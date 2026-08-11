@@ -12,15 +12,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  /* FMS Africa brand palette */
+  --color-navy-950: #0b1130;
+  --color-navy-900: #121a45;
+  --color-navy-800: #1a2456;
+  --color-navy-700: #253171;
+  --color-navy-600: #33418e;
+  --color-brand-300: #ffe680;
+  --color-brand-400: #ffdb4d;
+  --color-brand-500: #ffd200;
+  --color-brand-600: #e6bd00;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }

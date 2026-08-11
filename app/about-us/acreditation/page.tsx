@@ -1,0 +1,247 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import AccreditationCertificate from "@/components/accreditation-certificate";
+
+export const metadata: Metadata = {
+  title: "Accreditations",
+  description:
+    "Fleet Monitoring Systems Ltd (FMS Africa) is ISO 45001:2018 certified — demonstrating our commitment to occupational health, safety and quality management.",
+};
+
+const highlights = [
+  {
+    title: "Occupational Health & Safety",
+    body: "ISO 45001:2018 is the international standard for occupational health and safety management systems, helping organisations reduce workplace risks and create safer working conditions.",
+  },
+  {
+    title: "Risk-Based Approach",
+    body: "The certification requires systematic identification of hazards, assessment of risks and implementation of controls — aligned with how we deploy telematics to mitigate fleet and field operation risks.",
+  },
+  {
+    title: "Continuous Improvement",
+    body: "Certified organisations must demonstrate ongoing review and improvement of their health and safety performance — a principle that runs through our products, services and support.",
+  },
+  {
+    title: "Global Recognition",
+    body: "ISO 45001 is recognised worldwide, giving our clients confidence that FMS Africa operates to internationally accepted standards of compliance and quality.",
+  },
+];
+
+const commitments = [
+  {
+    label: "01",
+    title: "Worker Safety",
+    body: "Protecting the health and safety of our engineers, installers and field teams across every deployment.",
+  },
+  {
+    label: "02",
+    title: "Client Assurance",
+    body: "Giving enterprise clients documented proof that their telematics partner meets rigorous international standards.",
+  },
+  {
+    label: "03",
+    title: "Regulatory Alignment",
+    body: "Maintaining processes that align with occupational health and safety regulations across the markets we serve.",
+  },
+  {
+    label: "04",
+    title: "Operational Excellence",
+    body: "Embedding safety management into how we design, install and support every IoT and fleet monitoring solution.",
+  },
+];
+
+export default function AccreditationsPage() {
+  return (
+    <div className="bg-white">
+      {/* Hero */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
+          <p className="text-sm tracking-wide text-slate-500">
+            <span aria-hidden="true">•</span> Accreditations{" "}
+            <span aria-hidden="true">•</span>
+          </p>
+          <h1 className="mt-8 text-4xl font-bold leading-[1.12] tracking-tight text-navy-950 sm:text-5xl lg:text-7xl">
+            Certified compliance,
+            <br />
+            proven quality.
+          </h1>
+        </div>
+
+        <div className="relative aspect-video w-full overflow-hidden">
+          <Image
+            src="/assets/landing/control-room.jpg"
+            alt="FMS Africa operations and compliance monitoring"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      </section>
+
+      {/* Certificate feature */}
+      <section className="border-b border-slate-200 bg-slate-50 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <div>
+              <span className="inline-block bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-widest text-navy-950">
+                Current accreditation
+              </span>
+              <h2 className="mt-6 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
+                ISO 45001:2018 Certified
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-slate-600">
+                Fleet Monitoring Systems Ltd is now{" "}
+                <strong className="font-bold text-navy-900">
+                  ISO 45001:2018 Certified
+                </strong>
+                — the internationally recognised standard for occupational
+                health and safety management systems.
+              </p>
+              <ul className="mt-8 space-y-4 border-l-4 border-brand-500 pl-6">
+                <li className="text-sm leading-7 text-slate-600">
+                  <span className="font-bold text-navy-900">Standard:</span>{" "}
+                  ISO 45001:2018
+                </li>
+                <li className="text-sm leading-7 text-slate-600">
+                  <span className="font-bold text-navy-900">Organisation:</span>{" "}
+                  Fleet Monitoring Systems Ltd
+                </li>
+                <li className="text-sm leading-7 text-slate-600">
+                  <span className="font-bold text-navy-900">Scope:</span>{" "}
+                  Occupational Health &amp; Safety Management
+                </li>
+                <li className="text-sm leading-7 text-slate-600">
+                  <span className="font-bold text-navy-900">Region:</span>{" "}
+                  Uganda
+                </li>
+              </ul>
+            </div>
+
+            <AccreditationCertificate />
+          </div>
+        </div>
+      </section>
+
+      {/* What ISO 45001 means */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
+            Understanding the standard
+          </p>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
+            What ISO 45001:2018 means
+          </h2>
+          <p className="mt-5 text-base leading-7 text-slate-600">
+            ISO 45001 replaces OHSAS 18001 as the global benchmark for managing
+            occupational health and safety. Certification confirms that an
+            organisation has implemented a robust framework to protect workers
+            and continuously improve safety outcomes.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-px bg-navy-900/10 sm:grid-cols-2">
+          {highlights.map(({ title, body }) => (
+            <div
+              key={title}
+              className="bg-white p-8 transition-colors hover:bg-navy-950 group"
+            >
+              <span className="inline-block h-1 w-8 bg-brand-500" />
+              <h3 className="mt-5 text-lg font-bold text-navy-900 group-hover:text-white">
+                {title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600 group-hover:text-white/75">
+                {body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Commitments — dark panel */}
+      <section className="bg-navy-950 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-500">
+              Our commitment
+            </p>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Safety and compliance at the core of everything we do
+            </h2>
+          </div>
+
+          <div className="mt-14 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+            {commitments.map(({ label, title, body }) => (
+              <div
+                key={title}
+                className="border border-white/10 bg-navy-950 p-7 transition-colors hover:border-brand-500/50 hover:bg-navy-900"
+              >
+                <p className="text-sm font-bold text-brand-500">{label}</p>
+                <h3 className="mt-3 text-lg font-bold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/70">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats bar */}
+      <section className="border-y border-navy-900/10">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
+          {[
+            { value: "ISO", label: "45001:2018 certified" },
+            { value: "24/7", label: "Safety-first operations" },
+            { value: "5", label: "Continents served" },
+            { value: "100+", label: "Enterprise clients worldwide" },
+          ].map(({ value, label }) => (
+            <div
+              key={label}
+              className="border-b border-navy-900/10 bg-navy-950 px-6 py-10 text-center last:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
+            >
+              <p className="text-3xl font-bold tracking-tight text-brand-500 sm:text-4xl">
+                {value}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-white/70">{label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative overflow-hidden">
+        <Image
+          src="/assets/landing/hero-fleet.jpg"
+          alt=""
+          width={2000}
+          height={1326}
+          className="h-96 w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy-950/75" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+            Need to verify our accreditation?
+          </h2>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
+            Contact our team for certificate verification or to learn how our
+            ISO 45001:2018 certification supports your compliance requirements.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/about-us/contact-us"
+              className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
+            >
+              Contact Us
+            </Link>
+            <Link
+              href="/request-quote"
+              className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
+            >
+              Request a Free Quote
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
