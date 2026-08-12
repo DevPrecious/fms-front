@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import SiteHeader from "@/components/site-header";
-import SiteMain from "@/components/site-main";
-import SiteFooter from "@/components/site-footer";
+import SiteShell from "@/components/site-shell";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,6 +22,8 @@ export const metadata: Metadata = {
     "Real-time fleet and asset monitoring solutions — vehicle tracking, fuel management, AI-powered video telematics and more, across five continents.",
 };
 
+export const revalidate = 60;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -31,9 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SiteHeader />
-        <SiteMain>{children}</SiteMain>
-        <SiteFooter />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

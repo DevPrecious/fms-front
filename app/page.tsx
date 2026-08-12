@@ -1,6 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "@/components/hero-slider";
+import { getHeroSlides, getHomepage } from "@/lib/cms";
+import type { ReactNode } from "react";
+import type { HomepageContent, HeroSlide } from "@/lib/cms-types";
+
+export const revalidate = 60;
 
 function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -19,14 +24,14 @@ function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-const stats = [
+const fallbackStats = [
   { value: "100%", label: "Customer satisfaction with our work" },
   { value: "24/7", label: "Prompt reaction to your service needs" },
   { value: "3+", label: "Countries — Uganda, Kenya, Tanzania & more" },
   { value: "5", label: "Continents with dedicated support lines" },
 ];
 
-const solutions = [
+const fallbackSolutions = [
   {
     title: "Vehicle Tracking",
     href: "/services/vehicle-tracking",
@@ -59,7 +64,7 @@ const solutions = [
   },
 ];
 
-const benefits = [
+const fallbackBenefits = [
   {
     title: "Risk Mitigation",
     body: "Each stage of the cold chain provides an opportunity for risk that can be avoided and managed with GPS trackers and temperature sensors, ensuring the integrity of your products and assets end to end.",
@@ -78,7 +83,7 @@ const benefits = [
   },
 ];
 
-const pillars = [
+const fallbackPillars = [
   {
     title: "Internet of Things",
     body: "Sensors and trackers that connect your vehicles, generators, cargo and cold rooms to one platform.",
@@ -97,7 +102,7 @@ const pillars = [
   },
 ];
 
-const stories = [
+const fallbackStories = [
   {
     company: "MTN Zambia",
     quote:
@@ -135,11 +140,69 @@ const stories = [
   },
 ];
 
-export default function Home() {
+const fallbackHomepage: Omit<HomepageContent, "id" | "solutions"> & {
+  solutions: {
+    title: string;
+    href: string;
+    description: string;
+    theme: string;
+    iconPath?: string;
+    icon?: ReactNode;
+  }[];
+} = {
+  stats: fallbackStats,
+  missionEyebrow: "Who we are",
+  missionHeadline:
+    "We are dedicated to giving businesses real-time monitoring, analysis and control over their assets.",
+  missionBody:
+    "Our solutions enable asset optimization, significant OPEX reductions and productivity maximization — for fleets, generators, cargo and cold chains across Africa and beyond.",
+  missionImage: "/assets/landing/control-room.jpg",
+  missionCalloutText:
+    "GPS trackers with temperature sensors protect the integrity of your products at every stage of the cold chain.",
+  missionCalloutHref: "/services/cold-chain-management",
+  solutions: fallbackSolutions,
+  solutionsPhotoHref: "/services/fleet-management",
+  solutionsPhotoImage: "/assets/landing/trucks-highway.jpg",
+  solutionsPhotoTitle: "Fleet Management",
+  benefits: fallbackBenefits,
+  pillars: fallbackPillars,
+  stories: fallbackStories,
+  ctaImage: "/assets/landing/hero-fleet.jpg",
+  ctaHeadline: "Get started with a free consultation",
+  ctaPrimaryLabel: "Request a Free Quote",
+  ctaPrimaryHref: "/about-us/contact-us",
+  ctaSecondaryLabel: "Contact Us",
+  ctaSecondaryHref: "/about-us/contact-us",
+};
+
+export default async function Home() {
+  const [cmsHome, cmsSlides] = await Promise.all([
+    getHomepage().catch(() => null),
+    getHeroSlides().catch(() => [] as HeroSlide[]),
+  ]);
+
+  const home = cmsHome ?? fallbackHomepage;
+  const slides =
+    cmsSlides.length > 0
+      ? cmsSlides.map((s) => ({
+          image: s.image,
+          alt: s.alt,
+          lineOne: s.lineOne,
+          lineTwo: s.lineTwo,
+          body: s.body,
+        }))
+      : undefined;
+
+  const stats = home.stats?.length ? home.stats : fallbackStats;
+  const solutions = home.solutions?.length ? home.solutions : fallbackSolutions;
+  const benefits = home.benefits?.length ? home.benefits : fallbackBenefits;
+  const pillars = home.pillars?.length ? home.pillars : fallbackPillars;
+  const stories = home.stories?.length ? home.stories : fallbackStories;
+
   return (
     <div className="bg-white">
       {/* ── Hero slideshow ───────────────────────────────────── */}
-      <HeroSlider />
+      <HeroSlider slides={slides} />
 
       {/* ── Mission + stats ──────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -147,22 +210,19 @@ export default function Home() {
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
               <span className="mr-2 inline-block h-2 w-2 bg-brand-500" />
-              Who we are
+              {home.missionEyebrow}
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
-              We are dedicated to giving businesses real-time monitoring,
-              analysis and control over their assets.
+              {home.missionHeadline}
             </h2>
             <p className="mt-5 max-w-lg text-base leading-7 text-slate-600">
-              Our solutions enable asset optimization, significant OPEX
-              reductions and productivity maximization — for fleets, generators,
-              cargo and cold chains across Africa and beyond.
+              {home.missionBody}
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="overflow-hidden">
               <Image
-                src="/assets/landing/control-room.jpg"
+                src={home.missionImage || "/assets/landing/control-room.jpg"}
                 alt="Fleet analytics dashboard"
                 width={1200}
                 height={800}
@@ -171,11 +231,10 @@ export default function Home() {
             </div>
             <div className="flex flex-col justify-between bg-brand-500 p-6">
               <p className="text-sm font-semibold leading-6 text-navy-900">
-                GPS trackers with temperature sensors protect the integrity of
-                your products at every stage of the cold chain.
+                {home.missionCalloutText}
               </p>
               <Link
-                href="/services/cold-chain-management"
+                href={home.missionCalloutHref || "/services/cold-chain-management"}
                 className="mt-6 inline-flex h-10 w-10 items-center justify-center bg-navy-900 text-brand-500 transition-transform hover:scale-110"
                 aria-label="Learn about cold chain management"
               >
@@ -221,11 +280,11 @@ export default function Home() {
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {solutions.map(({ title, href, description, theme, icon }) => (
+            {solutions.map((solution) => (
               <Link
-                key={href}
-                href={href}
-                className={`group flex flex-col justify-between p-7 transition-transform duration-300 hover:-translate-y-1.5 ${theme}`}
+                key={solution.href}
+                href={solution.href}
+                className={`group flex flex-col justify-between p-7 transition-transform duration-300 hover:-translate-y-1.5 ${solution.theme}`}
               >
                 <div>
                   <span className="inline-flex h-12 w-12 items-center justify-center bg-white/15">
@@ -235,14 +294,18 @@ export default function Home() {
                       fill="currentColor"
                       aria-hidden="true"
                     >
-                      {icon}
+                      {"icon" in solution && solution.icon ? (
+                        solution.icon
+                      ) : (
+                        <path d={(solution as { iconPath?: string }).iconPath || ""} />
+                      )}
                     </svg>
                   </span>
                   <h3 className="mt-6 text-lg font-bold leading-snug">
-                    {title}
+                    {solution.title}
                   </h3>
                   <p className="mt-3 text-sm leading-6 opacity-80">
-                    {description}
+                    {solution.description}
                   </p>
                 </div>
                 <span className="mt-8 inline-flex items-center gap-2 text-sm font-bold">
@@ -254,11 +317,11 @@ export default function Home() {
 
             {/* Photo card */}
             <Link
-              href="/services/fleet-management"
+              href={home.solutionsPhotoHref || "/services/fleet-management"}
               className="group relative min-h-70 overflow-hidden"
             >
               <Image
-                src="/assets/landing/trucks-highway.jpg"
+                src={home.solutionsPhotoImage || "/assets/landing/trucks-highway.jpg"}
                 alt="Fleet management for heavy trucks"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -267,7 +330,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-linear-to-t from-navy-950/90 via-navy-950/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-7">
                 <h3 className="text-lg font-bold text-white">
-                  Fleet Management
+                  {home.solutionsPhotoTitle || "Fleet Management"}
                 </h3>
                 <span className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-brand-400">
                   Learn more
@@ -332,7 +395,7 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-navy-950/30" />
           <Link
-            href="/partner"
+            href="/resellers"
             className="absolute bottom-6 left-6 bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-all hover:-translate-y-0.5 hover:bg-brand-400"
           >
             Partner with us
@@ -423,7 +486,7 @@ export default function Home() {
       <section>
         <div className="relative w-full overflow-hidden">
           <Image
-            src="/assets/landing/hero-fleet.jpg"
+            src={home.ctaImage || "/assets/landing/hero-fleet.jpg"}
             alt=""
             width={2000}
             height={1326}
@@ -432,7 +495,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-navy-950/75" />
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
             <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-              Get started with a free consultation
+              {home.ctaHeadline}
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
               Interested in our products and want to know more? Leave us a
@@ -440,16 +503,16 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
-                href="/request-quote"
+                href={home.ctaPrimaryHref || "/about-us/contact-us"}
                 className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-all hover:-translate-y-0.5 hover:bg-brand-400"
               >
-                Request a Free Quote
+                {home.ctaPrimaryLabel || "Request a Free Quote"}
               </Link>
               <Link
-                href="/about-us/contact-us"
+                href={home.ctaSecondaryHref || "/about-us/contact-us"}
                 className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
               >
-                Contact Us
+                {home.ctaSecondaryLabel || "Contact Us"}
               </Link>
             </div>
           </div>

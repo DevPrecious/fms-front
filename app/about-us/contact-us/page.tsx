@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/contact-form";
 import {
-  contactFaqs,
-  inquiryCards,
-  offices,
+  contactFaqs as fallbackFaqs,
+  inquiryCards as fallbackCards,
+  offices as fallbackOffices,
 } from "@/components/contact-data";
-import { regionalPhones } from "@/components/site-data";
+import { regionalPhones as fallbackPhones } from "@/components/site-data";
+import { getContactPage, getSiteSettings } from "@/lib/cms";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -95,13 +98,29 @@ function ContactDetail({
   return content;
 }
 
-export default function ContactUsPage() {
+export default async function ContactUsPage() {
+  const [cms, settings] = await Promise.all([
+    getContactPage().catch(() => null),
+    getSiteSettings().catch(() => null),
+  ]);
+  const inquiryCards = cms?.inquiryCards?.length ? cms.inquiryCards : fallbackCards;
+  const offices = cms?.offices?.length ? cms.offices : fallbackOffices;
+  const contactFaqs = cms?.faqs?.length ? cms.faqs : fallbackFaqs;
+  const regionalPhones = settings?.regionalPhones?.length
+    ? settings.regionalPhones
+    : fallbackPhones;
+  const heroHeadline = cms?.heroHeadline || "Contact us";
+  const intro = cms?.intro || "We are on 24/7 to react promptly to your service needs. Reach our regional teams across Africa and beyond.";
+  const hqLocation = cms?.hqLocation || "Kampala, Uganda";
+  const hqPhone = cms?.hqPhone || "+256 200 909 900";
+  const hqEmail = cms?.hqEmail || "katongh@fms-ecsafrica.com";
+
   return (
     <div className="bg-white">
       {/* Hero title */}
       <section className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
         <h1 className="text-5xl font-bold tracking-tight text-navy-950 sm:text-6xl lg:text-7xl">
-          Contact us.
+          {heroHeadline}.
         </h1>
       </section>
 
@@ -142,35 +161,33 @@ export default function ContactUsPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="text-sm tracking-wide text-slate-500">
-              <span aria-hidden="true">•</span> Get in touch{" "}
+              <span aria-hidden="true">•</span> {heroHeadline}{" "}
               <span aria-hidden="true">•</span>
             </p>
             <h2 className="mt-6 text-3xl font-bold leading-tight tracking-tight text-navy-950 sm:text-4xl lg:text-5xl">
               Connect with us to drive fleet success.
             </h2>
             <p className="mt-5 text-base leading-7 text-slate-600">
-              Whether you need a quote, technical support or a partnership
-              conversation — our team is on 24/7 to react promptly to your
-              service needs across five continents.
+              {intro}
             </p>
 
             <div className="mt-10 space-y-6">
               <ContactDetail
                 icon="location"
                 label="Head office"
-                value="Kampala, Uganda"
+                value={hqLocation}
               />
               <ContactDetail
                 icon="phone"
                 label="Uganda"
-                value="(+256) 200-909900 / 772-850055"
-                href="tel:+256200909900"
+                value={hqPhone}
+                href={`tel:${hqPhone.replace(/[^\d+]/g, "")}`}
               />
               <ContactDetail
                 icon="email"
                 label="Email"
-                value="katongh@fms-ecsafrica.com"
-                href="mailto:katongh@fms-ecsafrica.com"
+                value={hqEmail}
+                href={`mailto:${hqEmail}`}
               />
             </div>
           </div>

@@ -1,0 +1,530 @@
+[
+  {
+    "id": "actv",
+    "name": "Actv",
+    "src": "/assets/clientele/actv.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "afreximbank",
+    "name": "Afreximbank",
+    "src": "/assets/clientele/afreximbank.jpg",
+    "category": "banking"
+  },
+  {
+    "id": "ags",
+    "name": "Ags",
+    "src": "/assets/clientele/ags.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "akili",
+    "name": "Akili",
+    "src": "/assets/clientele/akili.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "alight",
+    "name": "Alight",
+    "src": "/assets/clientele/alight.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "alight-uganda",
+    "name": "Alight Uganda",
+    "src": "/assets/clientele/alight-uganda.png",
+    "category": "ngo"
+  },
+  {
+    "id": "all-in-trade",
+    "name": "All in Trade",
+    "src": "/assets/clientele/all-in-trade.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "alliancemedia",
+    "name": "Alliancemedia",
+    "src": "/assets/clientele/alliancemedia.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "aron-foods",
+    "name": "Aron Foods",
+    "src": "/assets/clientele/aron-foods.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "balton-uganda-1",
+    "name": "Balton Uganda",
+    "src": "/assets/clientele/balton-uganda-1.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "bank-of-uganda-1",
+    "name": "Bank of Uganda",
+    "src": "/assets/clientele/bank-of-uganda-1.jpg",
+    "category": "banking"
+  },
+  {
+    "id": "bugiri-sugar-logo",
+    "name": "Bugiri Sugar Logo",
+    "src": "/assets/clientele/bugiri-sugar-logo.png",
+    "category": "corporate"
+  },
+  {
+    "id": "cadam",
+    "name": "Cadam",
+    "src": "/assets/clientele/cadam.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "care-international-1",
+    "name": "Care International",
+    "src": "/assets/clientele/care-international-1.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "care-international-uganda",
+    "name": "Care International Uganda",
+    "src": "/assets/clientele/care-international-uganda.png",
+    "category": "ngo"
+  },
+  {
+    "id": "central-public",
+    "name": "Central Public",
+    "src": "/assets/clientele/central-public.jpg",
+    "category": "government"
+  },
+  {
+    "id": "chicken-tonight",
+    "name": "Chicken Tonight",
+    "src": "/assets/clientele/chicken-tonight.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "cotton-on-foundation",
+    "name": "Cotton on Foundation",
+    "src": "/assets/clientele/cotton-on-foundation.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "csbag-1",
+    "name": "Csbag",
+    "src": "/assets/clientele/csbag-1.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "cws",
+    "name": "Cws",
+    "src": "/assets/clientele/cws.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "dpf",
+    "name": "Dpf",
+    "src": "/assets/clientele/dpf.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "eaps",
+    "name": "Eaps",
+    "src": "/assets/clientele/eaps.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "ecotrends",
+    "name": "Ecotrends",
+    "src": "/assets/clientele/ecotrends.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "edc",
+    "name": "Edc",
+    "src": "/assets/clientele/edc.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "elizabeth-glaser",
+    "name": "Elizabeth Glaser",
+    "src": "/assets/clientele/elizabeth-glaser.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "emerging-market-international",
+    "name": "Emerging Market International",
+    "src": "/assets/clientele/emerging-market-international.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "enabel",
+    "name": "Enabel",
+    "src": "/assets/clientele/enabel.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "equity-bank",
+    "name": "Equity Bank",
+    "src": "/assets/clientele/equity-bank.png",
+    "category": "banking"
+  },
+  {
+    "id": "equity-logo",
+    "name": "Equity Logo",
+    "src": "/assets/clientele/equity-logo.png",
+    "category": "banking"
+  },
+  {
+    "id": "evidence-action",
+    "name": "Evidence Action",
+    "src": "/assets/clientele/evidence-action.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "fao",
+    "name": "Fao",
+    "src": "/assets/clientele/fao.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "feed-the-future",
+    "name": "Feed the Future",
+    "src": "/assets/clientele/feed-the-future.png",
+    "category": "ngo"
+  },
+  {
+    "id": "finn-church-aid",
+    "name": "Finn Church Aid",
+    "src": "/assets/clientele/finn-church-aid.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "fsd-uganda",
+    "name": "Fsd Uganda",
+    "src": "/assets/clientele/fsd-uganda.jpg",
+    "category": "banking"
+  },
+  {
+    "id": "future-link",
+    "name": "Future Link",
+    "src": "/assets/clientele/future-link.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "geneva-global-1",
+    "name": "Geneva Global",
+    "src": "/assets/clientele/geneva-global-1.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "global-vet-ltd",
+    "name": "Global Vet ltd",
+    "src": "/assets/clientele/global-vet-ltd.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "goal",
+    "name": "Goal",
+    "src": "/assets/clientele/goal.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "health-partners-1",
+    "name": "Health Partners",
+    "src": "/assets/clientele/health-partners-1.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "health-partners-uganda",
+    "name": "Health Partners Uganda",
+    "src": "/assets/clientele/health-partners-uganda.png",
+    "category": "ngo"
+  },
+  {
+    "id": "hrafp",
+    "name": "Hrafp",
+    "src": "/assets/clientele/hrafp.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "human-diagnostics",
+    "name": "Human Diagnostics",
+    "src": "/assets/clientele/human-diagnostics.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "idlo",
+    "name": "Idlo",
+    "src": "/assets/clientele/idlo.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "ifpri",
+    "name": "Ifpri",
+    "src": "/assets/clientele/ifpri.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "ig",
+    "name": "Ig",
+    "src": "/assets/clientele/ig.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "international-school-of-uganda-1",
+    "name": "International School of Uganda",
+    "src": "/assets/clientele/international-school-of-uganda-1.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "jcrc",
+    "name": "Jcrc",
+    "src": "/assets/clientele/jcrc.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "jeff-hamilton-logo",
+    "name": "Jeff Hamilton Logo",
+    "src": "/assets/clientele/jeff-hamilton-logo.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "jrs",
+    "name": "Jrs",
+    "src": "/assets/clientele/jrs.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "keshwala",
+    "name": "Keshwala",
+    "src": "/assets/clientele/keshwala.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "kis-logo",
+    "name": "Kis Logo",
+    "src": "/assets/clientele/kis-logo.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "m-kopa",
+    "name": "M Kopa",
+    "src": "/assets/clientele/m-kopa.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "mercy-corps",
+    "name": "Mercy Corps",
+    "src": "/assets/clientele/mercy-corps.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "ministry-of-water-and-environment-1",
+    "name": "Ministry of Water and Environment",
+    "src": "/assets/clientele/ministry-of-water-and-environment-1.jpg",
+    "category": "government"
+  },
+  {
+    "id": "ministry-of-water-and-environment",
+    "name": "Ministry of Water and Environment",
+    "src": "/assets/clientele/ministry-of-water-and-environment.jpg",
+    "category": "government"
+  },
+  {
+    "id": "mr-price",
+    "name": "Mr Price",
+    "src": "/assets/clientele/mr-price.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "msc",
+    "name": "Msc",
+    "src": "/assets/clientele/msc.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "msh",
+    "name": "Msh",
+    "src": "/assets/clientele/msh.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "mtn-zambia",
+    "name": "Mtn Zambia",
+    "src": "/assets/clientele/mtn-zambia.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "mucobadi",
+    "name": "Mucobadi",
+    "src": "/assets/clientele/mucobadi.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "muduusi-gilbert",
+    "name": "Muduusi Gilbert",
+    "src": "/assets/clientele/muduusi-gilbert.png",
+    "category": "corporate"
+  },
+  {
+    "id": "new-vision",
+    "name": "New Vision",
+    "src": "/assets/clientele/new-vision.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "pe-connect",
+    "name": "Pe Connect",
+    "src": "/assets/clientele/pe-connect.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "psi-engineering-1",
+    "name": "Psi Engineering",
+    "src": "/assets/clientele/psi-engineering-1.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "samaritans-purse-2",
+    "name": "Samaritans Purse",
+    "src": "/assets/clientele/samaritans-purse-2.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "seed-global-health",
+    "name": "Seed Global Health",
+    "src": "/assets/clientele/seed-global-health.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "snl",
+    "name": "Snl",
+    "src": "/assets/clientele/snl.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "somarelang-investments-limited-logo",
+    "name": "Somarelang Investments limited Logo",
+    "src": "/assets/clientele/somarelang-investments-limited-logo.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "stanbic-bank",
+    "name": "Stanbic Bank",
+    "src": "/assets/clientele/stanbic-bank.jpg",
+    "category": "banking"
+  },
+  {
+    "id": "swico",
+    "name": "Swico",
+    "src": "/assets/clientele/swico.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "taso",
+    "name": "Taso",
+    "src": "/assets/clientele/taso.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "uba",
+    "name": "Uba",
+    "src": "/assets/clientele/uba.png",
+    "category": "banking"
+  },
+  {
+    "id": "uba-bank",
+    "name": "Uba Bank",
+    "src": "/assets/clientele/uba-bank.jpg",
+    "category": "banking"
+  },
+  {
+    "id": "uedcl-logo",
+    "name": "Uedcl Logo",
+    "src": "/assets/clientele/uedcl-logo.webp",
+    "category": "government"
+  },
+  {
+    "id": "uegcl",
+    "name": "Uegcl",
+    "src": "/assets/clientele/uegcl.png",
+    "category": "government"
+  },
+  {
+    "id": "uganda-airlines-1",
+    "name": "Uganda Airlines",
+    "src": "/assets/clientele/uganda-airlines-1.jpg",
+    "category": "government"
+  },
+  {
+    "id": "uganda-clays",
+    "name": "Uganda Clays",
+    "src": "/assets/clientele/uganda-clays.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "uganda-tourism-board",
+    "name": "Uganda Tourism Board",
+    "src": "/assets/clientele/uganda-tourism-board.jpg",
+    "category": "government"
+  },
+  {
+    "id": "unaids",
+    "name": "Unaids",
+    "src": "/assets/clientele/unaids.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "urc",
+    "name": "Urc",
+    "src": "/assets/clientele/urc.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "vetcentre",
+    "name": "Vetcentre",
+    "src": "/assets/clientele/vetcentre.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "vvsaol",
+    "name": "Vvsaol",
+    "src": "/assets/clientele/vvsaol.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "whh",
+    "name": "Whh",
+    "src": "/assets/clientele/whh.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "who",
+    "name": "Who",
+    "src": "/assets/clientele/who.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "world-vision-uganda",
+    "name": "World Vision Uganda",
+    "src": "/assets/clientele/world-vision-uganda.png",
+    "category": "ngo"
+  },
+  {
+    "id": "wosha-products",
+    "name": "Wosha Products",
+    "src": "/assets/clientele/wosha-products.jpg",
+    "category": "corporate"
+  },
+  {
+    "id": "zoa",
+    "name": "Zoa",
+    "src": "/assets/clientele/zoa.jpg",
+    "category": "ngo"
+  },
+  {
+    "id": "the-lutheran",
+    "name": "the Lutheran",
+    "src": "/assets/clientele/the-lutheran.jpg",
+    "category": "ngo"
+  }
+]

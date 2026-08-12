@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { aboutLinks, primaryLinks, serviceLinks } from "./site-data";
+import {
+  aboutLinks as defaultAboutLinks,
+  primaryLinks as defaultPrimaryLinks,
+  serviceLinks as defaultServiceLinks,
+  footerLoginUrl,
+  type NavLink,
+} from "./site-data";
 
 function Chevron({ className = "" }: { className?: string }) {
   return (
@@ -26,7 +32,29 @@ function Chevron({ className = "" }: { className?: string }) {
 const dropdownPanelClass =
   "invisible absolute top-full z-50 translate-y-3 border border-slate-100 bg-white opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-1 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-1 group-focus-within:opacity-100";
 
-export default function SiteHeader() {
+export type SiteHeaderProps = {
+  headerTagline?: string;
+  headerPhone?: string;
+  loginLabel?: string;
+  loginUrl?: string;
+  logoUrl?: string;
+  aboutLinks?: NavLink[];
+  primaryLinks?: NavLink[];
+  serviceLinks?: NavLink[];
+  contactPageUrl?: string;
+};
+
+export default function SiteHeader({
+  headerTagline = "Real-time fleet & asset intelligence across five continents",
+  headerPhone = "+256 772 753 829",
+  loginLabel = "FMS IoT Login",
+  loginUrl = footerLoginUrl,
+  logoUrl = "/assets/FMS-Logo-Blue-1.png",
+  aboutLinks = defaultAboutLinks,
+  primaryLinks = defaultPrimaryLinks,
+  serviceLinks = defaultServiceLinks,
+  contactPageUrl = "/about-us/contact-us",
+}: SiteHeaderProps = {}) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -62,17 +90,21 @@ export default function SiteHeader() {
       >
         <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <p className="hidden text-xs font-medium tracking-wide text-white/70 sm:block">
-            Real-time fleet &amp; asset intelligence across five continents
+            {headerTagline}
           </p>
           <div className="flex w-full items-center justify-between gap-4 sm:w-auto sm:justify-end">
             <a
-              href="tel:+256772753829"
+              href={`tel:${headerPhone.replace(/\s/g, "")}`}
               className="text-xs font-semibold text-brand-400 transition-colors hover:text-brand-300"
             >
-              +256 772 753 829
+              {headerPhone}
             </a>
             <a
-              href="#"
+              href={loginUrl}
+              target={loginUrl.startsWith("http") ? "_blank" : undefined}
+              rel={
+                loginUrl.startsWith("http") ? "noopener noreferrer" : undefined
+              }
               className="flex items-center gap-1.5 text-xs font-semibold text-white/90 transition-colors hover:text-brand-400"
             >
               <svg
@@ -88,7 +120,7 @@ export default function SiteHeader() {
                 <circle cx="12" cy="8" r="4" />
                 <path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" />
               </svg>
-              FMS IoT Login
+              {loginLabel}
             </a>
           </div>
         </div>
@@ -109,7 +141,7 @@ export default function SiteHeader() {
             onClick={closeMobile}
           >
             <Image
-              src="/assets/FMS-Logo-Blue-1.png"
+              src={logoUrl}
               alt="FMS Africa — Fleet Monitoring Systems Ltd"
               width={150}
               height={54}
@@ -195,7 +227,7 @@ export default function SiteHeader() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="/request-quote"
+              href={contactPageUrl}
               className="hidden bg-brand-500 px-5 py-2.5 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400 sm:block"
             >
               Request a Free Quote
@@ -296,7 +328,7 @@ export default function SiteHeader() {
             ))}
 
             <Link
-              href="/request-quote"
+              href={contactPageUrl}
               onClick={closeMobile}
               className="mt-4 block bg-brand-500 px-5 py-3 text-center text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
             >

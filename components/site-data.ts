@@ -37,12 +37,14 @@ export const serviceLinks: NavLink[] = [
 
 export const primaryLinks: NavLink[] = [
   { label: "Benefits", href: "/benefits" },
-  { label: "Partner", href: "/partner" },
+  { label: "Partner", href: "/resellers" },
   { label: "Clientele", href: "/clientele" },
   { label: "Blog", href: "/blog" },
 ];
 
-export const footerProducts: NavLink[] = [
+export const footerProducts: NavLink[] = serviceLinks;
+
+export const footerFeaturedProducts: NavLink[] = [
   { label: "Fleet Management", href: "/services/fleet-management" },
   { label: "AI-Powered Video Telematics", href: "/services/ai-powered-video-telematics" },
   { label: "Cargo Tracking", href: "/services/cargo-tracking" },
@@ -51,23 +53,76 @@ export const footerProducts: NavLink[] = [
   { label: "Push-To-Talk Telematics", href: "/services/push-to-talk-telematics" },
 ];
 
-/* External portals — update hrefs when the final URLs are confirmed. */
+export const footerLoginUrl = "http://app.fms-ecsafrica.com/login";
+
 export const footerQuickLinks: NavLink[] = [
-  { label: "Galooli Spaces", href: "#" },
-  { label: "CRM Tool", href: "#" },
-  { label: "System Integration using API", href: "#" },
-  { label: "ZON MAX Software Download", href: "#" },
-  { label: "Galooli Configuration Center", href: "#" },
-  { label: "BCE FMSET", href: "#" },
-  { label: "Teltonika Configurator", href: "#" },
-  { label: "System Development using SDK", href: "#" },
-  { label: "Galooli Ticketing System", href: "#" },
-  { label: "Xirgo Ticketing System", href: "#" },
-  { label: "Teltonika Ticketing System", href: "#" },
-  { label: "Webmail", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "API Reports", href: "#" },
+  { label: "Galooli Spaces", href: "https://login.galooli.com/" },
+  {
+    label: "CRM Tool",
+    href: "https://crm.monkeypesa.com/login?return_to=%2Fusers%2Fcurrent%2Forganizations",
+  },
+  {
+    label: "System Integration using API",
+    href: "https://developers.navixy.com/general/overview/",
+  },
+  { label: "ZON MAX Software Download", href: "https://zon.galooli-systems.com/" },
+  {
+    label: "Galooli Configuration Center",
+    href: "https://tools.galooli-systems.com/ConfigurationCenter/publish.htm",
+  },
+  { label: "BCE FMSET", href: "https://xdm.xgfleet.eu/login" },
+  {
+    label: "Teltonika Configurator",
+    href: "https://wiki.teltonika-gps.com/view/Teltonika_Configurator_versions",
+  },
+  {
+    label: "System Development using SDK",
+    href: "https://github.com/SquareGPS/navixy-js-sdk",
+  },
+  {
+    label: "Galooli Ticketing System",
+    href: "https://galooli.atlassian.net/servicedesk/customer/portal/5",
+  },
+  {
+    label: "Xirgo Ticketing System",
+    href: "https://sensatacloud.atlassian.net/servicedesk/customer/portal/35/user/login",
+  },
+  {
+    label: "Teltonika Ticketing System",
+    href: "https://viphelpdesk.teltonika.lt/en/Account/LogOn?ReturnUrl=%2f",
+  },
+  {
+    label: "Webmail",
+    href: "https://accounts.google.com/ServiceLogin?continue=http%3A%2F%2Fmail.google.com%2Fa%2Ffms-ecsafrica.com%2F&service=mail&sacu=1&hd=fms-ecsafrica.com#identifier",
+  },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "API Reports", href: "https://fms-ecsafrica.com/reports/" },
 ];
+
+export const footerPortalLinks: NavLink[] = [
+  {
+    label: "Client Portal",
+    href: "http://galoolitools.dnsalias.com/portal/clients/",
+  },
+  { label: "Hubspot CRM", href: "https://app.hubspot.com/login" },
+  { label: "CMS Manager", href: "https://cms.fms-ecsafrica.com/" },
+  {
+    label: "Galooli Configuration Center",
+    href: "https://zon.galooli-systems.com/zonProX/publish.htm",
+  },
+  { label: "BCE Configuration Center", href: "https://bce.fmset.eu/login" },
+];
+
+export const footerContact = {
+  phone: "+256 200 909 900",
+  whatsapp: "https://api.whatsapp.com/send?phone=+256772753829&text=Hello%20FMS%20Africa",
+  contactPage: "/about-us/contact-us",
+};
+
+export const footerDesignCredit = {
+  label: "Alphasoft Ltd",
+  href: "https://alphasoft.ltd/",
+};
 
 export const regionalPhones = [
   { region: "Europe", phone: "+44 745 235 3356" },

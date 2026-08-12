@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getAboutPage } from "@/lib/cms";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -25,14 +28,14 @@ function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-const stats = [
+const fallback_stats = [
   { value: "100+", label: "Enterprise clients served globally" },
   { value: "24/7", label: "Support across all time zones" },
   { value: "5", label: "Continents with dedicated phone lines" },
   { value: "3+", label: "Countries — Uganda, Kenya, Tanzania & more" },
 ];
 
-const pillars = [
+const fallback_pillars = [
   {
     number: "01",
     title: "Vision",
@@ -50,7 +53,7 @@ const pillars = [
   },
 ];
 
-const coreValues = [
+const fallback_coreValues = [
   {
     title: "Integrity",
     body: "Acting with honesty, transparency and ethical principles in all situations and at all times.",
@@ -77,7 +80,7 @@ const coreValues = [
   },
 ];
 
-const trustedBy = [
+const fallback_trustedBy = [
   "MTN Zambia",
   "African Queen",
   "Equity Bank",
@@ -87,7 +90,7 @@ const trustedBy = [
   "International School of Uganda",
 ];
 
-const faqs = [
+const fallback_faqs = [
   {
     question: "What does FMS Africa do?",
     answer:
@@ -110,7 +113,28 @@ const faqs = [
   },
 ];
 
-export default function AboutUsPage() {
+export default async function AboutUsPage() {
+  const cms = await getAboutPage().catch(() => null);
+  const heroHeadline = cms?.heroHeadline || "Driven by innovation,\npowered by data.";
+  const [heroLine1, heroLine2] = heroHeadline.split("\n");
+  const intro = cms?.intro || "Fleet Monitoring Systems Ltd (FMS Africa) is the leading Internet of Things technology company of choice globally. Our solutions provide businesses with real-time monitoring, analysis and control over their assets — enabling asset optimization, significant OPEX reductions and productivity maximization.";
+  const heroImage = cms?.heroImage || "/assets/landing/trucks-highway.jpg";
+  const stats = cms?.stats?.length ? cms.stats : fallback_stats;
+  const pillars = cms
+    ? [
+        { number: "01", title: "Vision", body: cms.vision },
+        { number: "02", title: "Mission", body: cms.mission },
+        { number: "03", title: "Purpose", body: cms.purpose },
+      ]
+    : fallback_pillars;
+  const coreValues = cms?.coreValues?.length ? cms.coreValues : fallback_coreValues;
+  const trustedBy = cms?.trustedBy?.length ? cms.trustedBy : fallback_trustedBy;
+  const faqs = cms?.faqs?.length ? cms.faqs : fallback_faqs;
+  const featuredQuote = cms?.featuredQuote || "We empower businesses with real-time operational data, enabling smarter decision making that drives productivity, cost savings and operational excellence.";
+  const featuredQuoteAuthor = cms?.featuredQuoteAuthor || "FMS Africa Purpose Statement";
+  const ctaHeadline = cms?.ctaHeadline || "Join the connected fleet movement with FMS Africa";
+  const ctaBody = cms?.ctaBody || "We're on 24/7 to react promptly to your service needs. If you are interested in partnering with us, leave a message and we will reply as soon as we can.";
+
   return (
     <div className="bg-white">
       {/* Hero — headline on white, image below */}
@@ -121,15 +145,14 @@ export default function AboutUsPage() {
             <span aria-hidden="true">•</span>
           </p>
           <h1 className="mt-8 text-4xl font-bold leading-[1.12] tracking-tight text-navy-950 sm:text-5xl lg:text-7xl">
-            Driven by innovation,
-            <br />
-            powered by data.
+            {heroLine1}
+            {heroLine2 ? (<><br />{heroLine2}</>) : null}
           </h1>
         </div>
 
         <div className="relative aspect-video w-full overflow-hidden">
           <Image
-            src="/assets/landing/trucks-highway.jpg"
+            src={heroImage}
             alt="FMS Africa fleet monitoring on the road"
             fill
             priority
@@ -142,11 +165,7 @@ export default function AboutUsPage() {
       {/* Intro */}
       <section className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
         <p className="text-lg leading-8 text-slate-600 sm:text-xl sm:leading-9">
-          Fleet Monitoring Systems Ltd (FMS Africa) is the leading Internet of
-          Things technology company of choice globally. Our solutions provide
-          businesses with real-time monitoring, analysis and control over their
-          assets — enabling asset optimization, significant OPEX reductions and
-          productivity maximization.
+          {intro}
         </p>
       </section>
 
@@ -276,12 +295,10 @@ export default function AboutUsPage() {
           </div>
           <blockquote className="border-l-4 border-brand-500 pl-6">
             <p className="text-xl font-medium leading-9 text-brand-400 sm:text-2xl sm:leading-10">
-              &ldquo;We empower businesses with real-time operational data,
-              enabling smarter decision making that drives productivity, cost
-              savings and operational excellence.&rdquo;
+              &ldquo;{featuredQuote}&rdquo;
             </p>
             <footer className="mt-6 text-sm font-bold text-white/70">
-              — FMS Africa Purpose Statement
+              — {featuredQuoteAuthor}
             </footer>
           </blockquote>
         </div>
@@ -339,22 +356,20 @@ export default function AboutUsPage() {
         <div className="absolute inset-0 bg-navy-950/75" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            Join the connected fleet movement with FMS Africa
+            {ctaHeadline}
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-            We&apos;re on 24/7 to react promptly to your service needs. If you
-            are interested in partnering with us, leave a message and we will
-            reply as soon as we can.
+            {ctaBody}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
-              href="/partner"
+              href="/resellers"
               className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
             >
               Partner with us
             </Link>
             <Link
-              href="/request-quote"
+              href="/about-us/contact-us"
               className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
             >
               Request a Free Quote

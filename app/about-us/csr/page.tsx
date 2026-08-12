@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import CsrInitiatives from "@/components/csr-initiatives";
-import { csrPillars } from "@/components/csr-data";
+import { csrPillars as fallbackPillars, csrInitiatives as fallbackInitiatives, type CsrInitiative } from "@/components/csr-data";
+import { getCsrPage, getCsrInitiatives } from "@/lib/cms";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Corporate Social Responsibility",
@@ -10,7 +13,29 @@ export const metadata: Metadata = {
     "FMS Africa's CSR initiatives — funding medical clinics, road safety training and community partnerships across Uganda.",
 };
 
-export default function CsrPage() {
+export default async function CsrPage() {
+  const [cmsPage, cmsInitiatives] = await Promise.all([
+    getCsrPage().catch(() => null),
+    getCsrInitiatives().catch(() => []),
+  ]);
+  const csrPillars = cmsPage?.pillars?.length ? cmsPage.pillars : fallbackPillars;
+  const initiatives: CsrInitiative[] =
+    cmsInitiatives.length > 0
+      ? cmsInitiatives.map((item, index) => ({
+          id: item.id || `csr-${index}`,
+          title: item.title,
+          partner: item.partner,
+          description: item.description,
+          image: item.image,
+          category: item.category as CsrInitiative["category"],
+          featured: item.featured,
+        }))
+      : fallbackInitiatives;
+  const heroHeadline = cmsPage?.heroHeadline || "Giving back,\nmoving forward.";
+  const [heroLine1, heroLine2] = heroHeadline.split("\n");
+  const intro = cmsPage?.intro || "Corporate Social Responsibility at FMS Africa — investing in community health, road safety and lasting partnerships that make a difference beyond the fleet.";
+  const heroImage = cmsPage?.heroImage || "/assets/csr/medical-clinic-nyakinengo.jpg";
+
   return (
     <div className="bg-white">
       {/* Hero */}
@@ -21,20 +46,17 @@ export default function CsrPage() {
             <span aria-hidden="true">•</span>
           </p>
           <h1 className="mt-8 text-4xl font-bold leading-[1.12] tracking-tight text-navy-950 sm:text-5xl lg:text-7xl">
-            Giving back,
-            <br />
-            moving forward.
+            {heroLine1}
+            {heroLine2 ? (<><br />{heroLine2}</>) : null}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            Corporate Social Responsibility at FMS Africa — investing in
-            community health, road safety and lasting partnerships that make a
-            difference beyond the fleet.
+            {intro}
           </p>
         </div>
 
         <div className="relative aspect-video w-full overflow-hidden">
           <Image
-            src="/assets/csr/medical-clinic-nyakinengo.jpg"
+            src={heroImage}
             alt="FMS-funded medical clinic in Nyakinengo Village, Uganda"
             fill
             priority
@@ -69,7 +91,7 @@ export default function CsrPage() {
           </div>
 
           <div className="mt-10">
-            <CsrInitiatives />
+            <CsrInitiatives initiatives={initiatives} />
           </div>
         </div>
       </section>
@@ -122,7 +144,7 @@ export default function CsrPage() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
-              href="/partner"
+              href="/resellers"
               className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
             >
               Partner with us

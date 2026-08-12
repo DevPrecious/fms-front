@@ -9,16 +9,21 @@ import {
   type CsrInitiative,
 } from "./csr-data";
 
-export default function CsrInitiatives() {
+export default function CsrInitiatives({
+  initiatives = csrInitiatives,
+}: {
+  initiatives?: CsrInitiative[];
+} = {}) {
+  const source = initiatives.length > 0 ? initiatives : csrInitiatives;
   const [activeCategory, setActiveCategory] = useState<CsrCategory>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const filtered = useMemo(
     () =>
       activeCategory === "all"
-        ? csrInitiatives
-        : csrInitiatives.filter((item) => item.category === activeCategory),
-    [activeCategory],
+        ? source
+        : source.filter((item) => item.category === activeCategory),
+    [activeCategory, source],
   );
 
   const featured = filtered.find((item) => item.featured);

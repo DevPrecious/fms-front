@@ -3,12 +3,17 @@
 import { useState } from "react";
 import { benefitSteps } from "./benefits-data";
 
-export default function BenefitsSteps() {
+export default function BenefitsSteps({
+  steps = benefitSteps,
+}: {
+  steps?: typeof benefitSteps;
+} = {}) {
+  const source = steps.length > 0 ? steps : benefitSteps;
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <div className="space-y-3">
-      {benefitSteps.map((step, index) => {
+      {source.map((step, index) => {
         const isOpen = openIndex === index;
 
         return (

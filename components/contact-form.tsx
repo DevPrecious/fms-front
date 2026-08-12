@@ -1,13 +1,41 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import { submitContactMessage } from "@/lib/cms";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [pending, setPending] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+    setError("");
+    setPending(true);
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const firstName = String(data.get("firstName") || "").trim();
+    const lastName = String(data.get("lastName") || "").trim();
+    try {
+      await submitContactMessage({
+        name: `${firstName} ${lastName}`.trim(),
+        email: String(data.get("email") || "").trim(),
+        phone: String(data.get("phone") || "").trim() || undefined,
+        message: String(data.get("message") || "").trim(),
+        source: "contact-page",
+      });
+      setSubmitted(true);
+      form.reset();
+    } catch (e) {
+      setError(
+        e instanceof Error
+          ? e.message
+          : "Unable to send message. Please try again.",
+      );
+    } finally {
+      setPending(false);
+    }
   };
 
   if (submitted) {
@@ -44,10 +72,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-navy-900 p-8 sm:p-10 lg:p-12"
-    >
+    <form onSubmit={handleSubmit} className="bg-navy-900 p-8 sm:p-10 lg:p-12">
       <h3 className="text-xl font-bold text-white sm:text-2xl">
         Send us a message
       </h3>
@@ -142,15 +167,29 @@ export default function ContactForm() {
           className="mt-0.5 h-4 w-4 shrink-0 accent-brand-500"
         />
         <span className="text-xs leading-5 text-white/60">
-          I agree to the Terms of Use and Privacy Policy.
+          I agree to the Terms of Use and{" "}
+          <Link
+            href="/privacy-policy"
+            className="text-brand-400 underline-offset-2 hover:underline"
+          >
+            Privacy Policy
+          </Link>
+          .
         </span>
       </label>
 
+      {error && (
+        <p className="mt-4 text-sm text-red-300" role="alert">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="mt-8 w-full bg-brand-500 py-4 text-sm font-bold uppercase tracking-wider text-navy-950 transition-colors hover:bg-brand-400"
+        disabled={pending}
+        className="mt-8 w-full bg-brand-500 py-4 text-sm font-bold uppercase tracking-wider text-navy-950 transition-colors hover:bg-brand-400 disabled:opacity-60"
       >
-        Submit
+        {pending ? "Submitting…" : "Submit"}
       </button>
     </form>
   );

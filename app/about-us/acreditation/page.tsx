@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AccreditationCertificate from "@/components/accreditation-certificate";
+import { getAccreditationPage } from "@/lib/cms";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Accreditations",
@@ -9,7 +12,7 @@ export const metadata: Metadata = {
     "Fleet Monitoring Systems Ltd (FMS Africa) is ISO 45001:2018 certified — demonstrating our commitment to occupational health, safety and quality management.",
 };
 
-const highlights = [
+const fallback_highlights = [
   {
     title: "Occupational Health & Safety",
     body: "ISO 45001:2018 is the international standard for occupational health and safety management systems, helping organisations reduce workplace risks and create safer working conditions.",
@@ -28,7 +31,7 @@ const highlights = [
   },
 ];
 
-const commitments = [
+const fallback_commitments = [
   {
     label: "01",
     title: "Worker Safety",
@@ -51,7 +54,41 @@ const commitments = [
   },
 ];
 
-export default function AccreditationsPage() {
+function parseHighlights(items: string[]) {
+  return items.map((item) => {
+    const idx = item.indexOf(": ");
+    if (idx === -1) return { title: item, body: item };
+    return { title: item.slice(0, idx), body: item.slice(idx + 2) };
+  });
+}
+
+export default async function AccreditationsPage() {
+  const cms = await getAccreditationPage().catch(() => null);
+  const heroHeadline = cms?.heroHeadline || "Certified compliance,\nproven quality.";
+  const [heroLine1, heroLine2] = heroHeadline.split("\n");
+  const intro = cms?.intro || "Fleet Monitoring Systems Ltd is now ISO 45001:2018 Certified — the internationally recognised standard for occupational health and safety management systems.";
+  const certificateTitle = cms?.certificateTitle || "ISO 45001:2018 Certified";
+  const highlights = cms?.highlights?.length
+    ? parseHighlights(cms.highlights)
+    : fallback_highlights;
+  const commitments = cms?.commitments?.length
+    ? cms.commitments.map((c, i) => ({
+        label: String(i + 1).padStart(2, "0"),
+        title: c.title,
+        body: c.body,
+      }))
+    : fallback_commitments;
+  const stats = cms?.stats?.length
+    ? cms.stats
+    : [
+        { value: "ISO", label: "45001:2018 certified" },
+        { value: "24/7", label: "Safety-first operations" },
+        { value: "5", label: "Continents served" },
+        { value: "100+", label: "Enterprise clients worldwide" },
+      ];
+  const ctaHeadline = cms?.ctaHeadline || "Need to verify our accreditation?";
+  const ctaBody = cms?.ctaBody || "Contact our team for certificate verification or to learn how our ISO 45001:2018 certification supports your compliance requirements.";
+
   return (
     <div className="bg-white">
       {/* Hero */}
@@ -62,9 +99,8 @@ export default function AccreditationsPage() {
             <span aria-hidden="true">•</span>
           </p>
           <h1 className="mt-8 text-4xl font-bold leading-[1.12] tracking-tight text-navy-950 sm:text-5xl lg:text-7xl">
-            Certified compliance,
-            <br />
-            proven quality.
+            {heroLine1}
+            {heroLine2 ? (<><br />{heroLine2}</>) : null}
           </h1>
         </div>
 
@@ -89,15 +125,10 @@ export default function AccreditationsPage() {
                 Current accreditation
               </span>
               <h2 className="mt-6 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
-                ISO 45001:2018 Certified
+                {certificateTitle}
               </h2>
               <p className="mt-5 text-lg leading-8 text-slate-600">
-                Fleet Monitoring Systems Ltd is now{" "}
-                <strong className="font-bold text-navy-900">
-                  ISO 45001:2018 Certified
-                </strong>
-                — the internationally recognised standard for occupational
-                health and safety management systems.
+                {intro}
               </p>
               <ul className="mt-8 space-y-4 border-l-4 border-brand-500 pl-6">
                 <li className="text-sm leading-7 text-slate-600">
@@ -189,12 +220,7 @@ export default function AccreditationsPage() {
       {/* Stats bar */}
       <section className="border-y border-navy-900/10">
         <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
-          {[
-            { value: "ISO", label: "45001:2018 certified" },
-            { value: "24/7", label: "Safety-first operations" },
-            { value: "5", label: "Continents served" },
-            { value: "100+", label: "Enterprise clients worldwide" },
-          ].map(({ value, label }) => (
+          {stats.map(({ value, label }) => (
             <div
               key={label}
               className="border-b border-navy-900/10 bg-navy-950 px-6 py-10 text-center last:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
@@ -220,11 +246,10 @@ export default function AccreditationsPage() {
         <div className="absolute inset-0 bg-navy-950/75" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            Need to verify our accreditation?
+            {ctaHeadline}
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-            Contact our team for certificate verification or to learn how our
-            ISO 45001:2018 certification supports your compliance requirements.
+            {ctaBody}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
@@ -234,7 +259,7 @@ export default function AccreditationsPage() {
               Contact Us
             </Link>
             <Link
-              href="/request-quote"
+              href="/about-us/contact-us"
               className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
             >
               Request a Free Quote

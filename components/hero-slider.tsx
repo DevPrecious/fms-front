@@ -4,7 +4,15 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const slides = [
+export type HeroSlideData = {
+  image: string;
+  alt: string;
+  lineOne: string;
+  lineTwo: string;
+  body: string;
+};
+
+const fallbackSlides: HeroSlideData[] = [
   {
     image: "/assets/landing/hero-fleet.jpg",
     alt: "Cargo truck on a highway monitored in real time",
@@ -37,27 +45,32 @@ const slides = [
 
 const SLIDE_INTERVAL_MS = 6000;
 
-export default function HeroSlider() {
+export default function HeroSlider({
+  slides = fallbackSlides,
+}: {
+  slides?: HeroSlideData[];
+}) {
+  const activeSlides = slides.length > 0 ? slides : fallbackSlides;
   const [active, setActive] = useState(0);
 
   useEffect(() => {
     const id = setInterval(
-      () => setActive((current) => (current + 1) % slides.length),
+      () => setActive((current) => (current + 1) % activeSlides.length),
       SLIDE_INTERVAL_MS,
     );
     return () => clearInterval(id);
-  }, [active]);
+  }, [active, activeSlides.length]);
 
   return (
     <section
       className="relative h-dvh min-h-140 w-full overflow-hidden"
       aria-label="Highlights"
     >
-      {slides.map((slide, index) => {
+      {activeSlides.map((slide, index) => {
         const isActive = index === active;
         return (
           <div
-            key={slide.image}
+            key={`${slide.image}-${index}`}
             className={`absolute inset-0 transition-opacity duration-1000 ${
               isActive ? "opacity-100" : "pointer-events-none opacity-0"
             }`}
@@ -104,7 +117,7 @@ export default function HeroSlider() {
                   }`}
                 >
                   <Link
-                    href="/request-quote"
+                    href="/about-us/contact-us"
                     className="inline-block bg-white px-7 py-3.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-brand-500"
                   >
                     Get started
@@ -116,11 +129,10 @@ export default function HeroSlider() {
         );
       })}
 
-      {/* Slide indicators */}
       <div className="absolute bottom-8 right-4 flex gap-2 sm:right-6 lg:right-8">
-        {slides.map((slide, index) => (
+        {activeSlides.map((slide, index) => (
           <button
-            key={slide.image}
+            key={`${slide.image}-dot-${index}`}
             type="button"
             onClick={() => setActive(index)}
             aria-label={`Go to slide ${index + 1}`}

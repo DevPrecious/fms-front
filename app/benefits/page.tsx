@@ -3,10 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import BenefitsSteps from "@/components/benefits-steps";
 import {
-  benefitSteps,
-  industryBenefits,
-  solutionPillars,
+  benefitSteps as fallbackSteps,
+  industryBenefits as fallbackIndustries,
+  solutionPillars as fallbackPillars,
 } from "@/components/benefits-data";
+import { getBenefitsPage } from "@/lib/cms";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Benefits",
@@ -14,7 +17,25 @@ export const metadata: Metadata = {
     "Discover the benefits of FMS Africa GPS tracking, AI video telematics, fuel management and industry-specific fleet intelligence solutions.",
 };
 
-export default function BenefitsPage() {
+export default async function BenefitsPage() {
+  const cms = await getBenefitsPage().catch(() => null);
+  const benefitSteps = cms?.steps?.length ? cms.steps : fallbackSteps;
+  const industryBenefits = cms?.industries?.length ? cms.industries : fallbackIndustries;
+  const solutionPillars = cms?.pillars?.length ? cms.pillars : fallbackPillars;
+  const heroHeadline = cms?.heroHeadline || "Effortless steps to fleet intelligence.";
+  const intro = cms?.intro || "We provide customer-centric solutions tailored to the specific needs of each industry — empowering data-driven decisions that increase productivity and efficiency.";
+  const heroImage = cms?.heroImage || "/assets/landing/trucks-highway.jpg";
+  const stats = cms?.stats?.length
+    ? cms.stats
+    : [
+        { value: String(benefitSteps.length), label: "Core solution areas" },
+        { value: "24/7", label: "Real-time monitoring" },
+        { value: "15+", label: "Industry verticals served" },
+        { value: "100%", label: "Customer-centric approach" },
+      ];
+  const ctaHeadline = cms?.ctaHeadline || "Join the connected fleet movement with FMS Africa";
+  const ctaBody = cms?.ctaBody || "Don't leave success up to chance. Partner with us and chart your course to efficiency, security and peace of mind.";
+
   return (
     <div className="bg-white">
       {/* Hero — headline left, callout right, image below */}
@@ -22,7 +43,7 @@ export default function BenefitsPage() {
         <div className="mx-auto max-w-7xl px-4 pt-20 sm:px-6 lg:px-8 lg:pt-28">
           <div className="grid items-start gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-navy-950 sm:text-5xl lg:text-6xl xl:text-7xl">
-              Effortless steps to fleet intelligence.
+              {heroHeadline}
             </h1>
 
             <aside className="bg-navy-950 p-6 sm:p-8">
@@ -37,9 +58,7 @@ export default function BenefitsPage() {
                 </svg>
               </span>
               <p className="mt-5 text-sm leading-7 text-white/80">
-                We provide customer-centric solutions tailored to the specific
-                needs of each industry — empowering data-driven decisions that
-                increase productivity and efficiency.
+                {intro}
               </p>
             </aside>
           </div>
@@ -47,7 +66,7 @@ export default function BenefitsPage() {
 
         <div className="relative mt-12 aspect-21/9 w-full overflow-hidden sm:mt-16">
           <Image
-            src="/assets/landing/trucks-highway.jpg"
+            src={heroImage}
             alt="FMS Africa fleet on the highway"
             fill
             priority
@@ -75,7 +94,7 @@ export default function BenefitsPage() {
             </div>
           </div>
 
-          <BenefitsSteps />
+          <BenefitsSteps steps={benefitSteps} />
         </div>
       </section>
 
@@ -143,12 +162,7 @@ export default function BenefitsPage() {
       {/* Stats */}
       <section className="border-y border-navy-900/10">
         <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
-          {[
-            { value: String(benefitSteps.length), label: "Core solution areas" },
-            { value: "24/7", label: "Real-time monitoring" },
-            { value: "15+", label: "Industry verticals served" },
-            { value: "100%", label: "Customer-centric approach" },
-          ].map(({ value, label }) => (
+          {stats.map(({ value, label }) => (
             <div
               key={label}
               className="border-b border-navy-900/10 bg-navy-950 px-6 py-10 text-center last:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
@@ -174,15 +188,14 @@ export default function BenefitsPage() {
         <div className="absolute inset-0 bg-navy-950/75" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            Join the connected fleet movement with FMS Africa
+            {ctaHeadline}
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-            Don&apos;t leave success up to chance. Partner with us and chart
-            your course to efficiency, security and peace of mind.
+            {ctaBody}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
-              href="/request-quote"
+              href="/about-us/contact-us"
               className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
             >
               Get started

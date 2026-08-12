@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import GalleryView from "@/components/gallery-view";
-import { galleryItems } from "@/components/gallery-data";
+import { galleryItems as fallbackGallery } from "@/components/gallery-data";
+import { getGalleryItems } from "@/lib/cms";
+import type { GalleryItem } from "@/components/gallery-data";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -9,7 +13,18 @@ export const metadata: Metadata = {
     "Explore FMS Africa in action — technical installations, Malaysia factory visits, and partnership events across our global operations.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const cmsItems = await getGalleryItems().catch(() => []);
+  const items: GalleryItem[] =
+    cmsItems.length > 0
+      ? cmsItems.map((item, index) => ({
+          id: item.id || `gallery-${index}`,
+          src: item.src,
+          title: item.title,
+          category: item.category as GalleryItem["category"],
+        }))
+      : fallbackGallery;
+
   return (
     <div className="bg-white">
       {/* Hero */}
@@ -26,7 +41,7 @@ export default function GalleryPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
             Field installations, technical operations and partnership events
-            from across FMS Africa&apos;s global footprint — {galleryItems.length}{" "}
+            from across FMS Africa&apos;s global footprint — {items.length}{" "}
             moments captured on site.
           </p>
         </div>
@@ -43,7 +58,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <GalleryView />
+      <GalleryView items={items} />
     </div>
   );
 }

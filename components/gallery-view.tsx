@@ -9,16 +9,21 @@ import {
   type GalleryItem,
 } from "./gallery-data";
 
-export default function GalleryView() {
+export default function GalleryView({
+  items = galleryItems,
+}: {
+  items?: GalleryItem[];
+} = {}) {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const sourceItems = items.length > 0 ? items : galleryItems;
 
   const filteredItems = useMemo(
     () =>
       activeCategory === "all"
-        ? galleryItems
-        : galleryItems.filter((item) => item.category === activeCategory),
-    [activeCategory],
+        ? sourceItems
+        : sourceItems.filter((item) => item.category === activeCategory),
+    [activeCategory, sourceItems],
   );
 
   const openLightbox = (item: GalleryItem) => {

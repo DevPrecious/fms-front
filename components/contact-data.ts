@@ -21,7 +21,7 @@ export const inquiryCards = [
     description:
       "Interested in becoming a distributor, reseller or technology partner? Let's explore how we can grow together.",
     email: "katongh@fms-ecsafrica.com",
-    href: "/partner",
+    href: "/resellers",
     icon: "envelope",
   },
 ];
