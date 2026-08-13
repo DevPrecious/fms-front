@@ -17,13 +17,13 @@ const fallbackSlides: HeroSlideData[] = [
   {
     image: "/assets/landing/hero-fleet.jpg",
     alt: "Cargo truck on a highway monitored in real time",
-    lineOne: "Embrace the data,",
-    lineTwo: "empower your fleet.",
-    body: "Internet of Things, Big Data and AI — customer-centric solutions tailored to your industry, so every decision is a data-driven one.",
+    lineOne: "Now open in Nigeria.",
+    lineTwo: "Empower your fleet.",
+    body: "FMS Africa Nigeria Ltd brings IoT, Big Data and AI onshore — customer-centric fleet solutions for Nigerian logistics, banking, energy and public operators.",
   },
   {
     image: "/assets/landing/trucks-highway.jpg",
-    alt: "Heavy truck managed with FMS Africa fleet management",
+    alt: "Heavy truck managed with FMS Africa Nigeria fleet management",
     lineOne: "Your fleet,",
     lineTwo: "always in sight.",
     body: "Real-time GPS tracking, driver identification and utilization reports that maximize the productivity of every vehicle you own.",

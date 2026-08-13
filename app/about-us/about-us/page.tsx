@@ -7,7 +7,7 @@ import ConsultationCta from "@/components/consultation-cta";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Fleet Monitoring Systems Ltd (FMS Africa) — the leading IoT technology company providing real-time asset monitoring, analytics and control globally.",
+    "FMS Africa Nigeria Ltd — the local office of Fleet Monitoring Systems, now open in Lagos with IoT fleet, fuel and asset monitoring for Nigerian operators.",
 };
 
 function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -28,10 +28,10 @@ function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
 }
 
 const fallback_stats = [
-  { value: "100+", label: "Enterprise clients served globally" },
-  { value: "24/7", label: "Support across all time zones" },
-  { value: "5", label: "Continents with dedicated phone lines" },
-  { value: "3+", label: "Countries — Uganda, Kenya, Tanzania & more" },
+  { value: "100+", label: "Enterprise clients served by the FMS Africa group" },
+  { value: "24/7", label: "Support from our Nigeria office" },
+  { value: "NG", label: "Lagos office now open" },
+  { value: "5", label: "Continents covered by the group" },
 ];
 
 const fallback_pillars = [
@@ -80,20 +80,20 @@ const fallback_coreValues = [
 ];
 
 const fallback_trustedBy = [
+  "United Bank for Africa",
   "MTN Zambia",
   "African Queen",
   "Equity Bank",
   "UMEME Limited",
   "Nile Breweries Ltd",
   "Ministry of Water & Environment",
-  "International School of Uganda",
 ];
 
 const fallback_faqs = [
   {
-    question: "What does FMS Africa do?",
+    question: "What does FMS Africa Nigeria do?",
     answer:
-      "Fleet Monitoring Systems Ltd (FMS Africa) is a leading Internet of Things technology company. We provide businesses with real-time monitoring, analysis and control over their assets — enabling optimization, OPEX reduction and productivity maximization.",
+      "FMS Africa Nigeria Ltd is the Nigerian office of Fleet Monitoring Systems (FMS Africa). We provide businesses with real-time monitoring, analysis and control over their assets — enabling optimization, OPEX reduction and productivity maximization — now with a local team in Lagos.",
   },
   {
     question: "Which industries do you serve?",
@@ -103,10 +103,10 @@ const fallback_faqs = [
   {
     question: "Where do you operate?",
     answer:
-      "We operate across Uganda, Kenya, Tanzania and more, with dedicated support lines covering Europe, Asia, North America, South America and Africa.",
+      "Our Lagos office serves Nigeria and West Africa. We are part of the FMS Africa group, which also operates across Uganda, Kenya, Tanzania and more, with dedicated support lines covering Europe, Asia, North America, South America and Africa.",
   },
   {
-    question: "How can I partner with FMS Africa?",
+    question: "How can I partner with FMS Africa Nigeria?",
     answer:
       "We are on 24/7 to react promptly to your service needs. If you are interested in partnering with us, leave a message through our partner page and we will reply as soon as we can.",
   },
@@ -116,7 +116,7 @@ export default async function AboutUsPage() {
   const cms = await getAboutPage().catch(() => null);
   const heroHeadline = cms?.heroHeadline || "Driven by innovation,\npowered by data.";
   const [heroLine1, heroLine2] = heroHeadline.split("\n");
-  const intro = cms?.intro || "Fleet Monitoring Systems Ltd (FMS Africa) is the leading Internet of Things technology company of choice globally. Our solutions provide businesses with real-time monitoring, analysis and control over their assets — enabling asset optimization, significant OPEX reductions and productivity maximization.";
+  const intro = cms?.intro || "FMS Africa Nigeria Ltd is the Nigerian office of Fleet Monitoring Systems (FMS Africa). We are now on the ground in Lagos — bringing proven IoT fleet, fuel, cargo and video telematics to Nigerian operators, with the backing of the wider FMS Africa group.";
   const heroImage = cms?.heroImage || "/assets/landing/trucks-highway.jpg";
   const stats = cms?.stats?.length ? cms.stats : fallback_stats;
   const pillars = cms

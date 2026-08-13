@@ -34,15 +34,15 @@ const heroSlides = [
   {
     image: "/assets/landing/hero-fleet.jpg",
     alt: "Cargo truck on a highway monitored in real time",
-    lineOne: "Embrace the data,",
-    lineTwo: "empower your fleet.",
-    body: "Internet of Things, Big Data and AI — customer-centric solutions tailored to your industry, so every decision is a data-driven one.",
+    lineOne: "Now open in Nigeria.",
+    lineTwo: "Empower your fleet.",
+    body: "FMS Africa Nigeria Ltd brings IoT, Big Data and AI onshore — customer-centric fleet solutions for Nigerian logistics, banking, energy and public operators.",
     order: 0,
     active: true,
   },
   {
     image: "/assets/landing/trucks-highway.jpg",
-    alt: "Heavy truck managed with FMS Africa fleet management",
+    alt: "Heavy truck managed with FMS Africa Nigeria fleet management",
     lineOne: "Your fleet,",
     lineTwo: "always in sight.",
     body: "Real-time GPS tracking, driver identification and utilization reports that maximize the productivity of every vehicle you own.",
@@ -70,22 +70,22 @@ const heroSlides = [
 ];
 
 const siteSettings = {
-  siteName: "FMS Africa",
+  siteName: "FMS Africa Nigeria Ltd",
   siteDescription:
-    "Real-time fleet and asset monitoring solutions — vehicle tracking, fuel management, AI-powered video telematics and more, across five continents.",
+    "FMS Africa Nigeria Ltd is now open in Lagos — real-time fleet and asset monitoring, vehicle tracking, fuel management and AI video telematics for Nigerian operators.",
   logoUrl: "/assets/FMS-Logo-Blue-1.png",
-  headerTagline: "Real-time fleet & asset intelligence across five continents",
-  headerPhone: "+256 772 753 829",
+  headerTagline: "Now open in Nigeria — fleet & asset intelligence for West Africa",
+  headerPhone: "+234 803 298 0119",
   loginLabel: "FMS IoT Login",
   loginUrl: site.footerLoginUrl,
   footerBlurb:
-    "Our solutions provide businesses with real-time monitoring, analysis and control over their assets — enabling asset optimization, significant OPEX reductions and productivity maximization.",
+    "FMS Africa Nigeria Ltd is now on the ground in Lagos — bringing the FMS Africa group's real-time fleet, fuel and asset monitoring to Nigerian operators.",
   footerPhone: site.footerContact.phone,
   footerWhatsapp: site.footerContact.whatsapp,
   contactPageUrl: site.footerContact.contactPage,
   designCreditLabel: site.footerDesignCredit.label,
   designCreditUrl: site.footerDesignCredit.href,
-  footerCopyright: "© Fleet Monitoring Systems Ltd. All rights reserved.",
+  footerCopyright: "© FMS Africa Nigeria Ltd. All rights reserved.",
   facebookUrl: "",
   twitterUrl: "",
   linkedinUrl: "",
@@ -97,20 +97,26 @@ const siteSettings = {
   footerQuickLinks: site.footerQuickLinks,
   footerPortalLinks: site.footerPortalLinks,
   footerFeaturedProducts: site.footerFeaturedProducts,
+  ctaImage: "/assets/landing/hero-fleet.jpg",
+  ctaHeadline: "Get started with a free consultation",
+  ctaBody:
+    "Talk to our Lagos team about fleet and asset solutions for Nigeria. Take the first step today.",
+  ctaButtonLabel: "Get a free consultation",
+  ctaHref: "/about-us/contact-us",
 };
 
 const homepage = {
   stats: [
     { value: "100%", label: "Customer satisfaction with our work" },
-    { value: "24/7", label: "Prompt reaction to your service needs" },
-    { value: "3+", label: "Countries — Uganda, Kenya, Tanzania & more" },
-    { value: "5", label: "Continents with dedicated support lines" },
+    { value: "24/7", label: "Local support from our Nigeria office" },
+    { value: "NG", label: "Lagos office now serving Nigeria" },
+    { value: "5", label: "Continents covered by the FMS Africa group" },
   ],
   missionEyebrow: "Who we are",
   missionHeadline:
-    "We are dedicated to giving businesses real-time monitoring, analysis and control over their assets.",
+    "FMS Africa Nigeria Ltd is now on the ground — giving Nigerian businesses real-time monitoring, analysis and control over their assets.",
   missionBody:
-    "Our solutions enable asset optimization, significant OPEX reductions and productivity maximization — for fleets, generators, cargo and cold chains across Africa and beyond.",
+    "Our Lagos office brings the FMS Africa group's IoT, fuel, video telematics and cold-chain platforms to fleets, generators, cargo and logistics operators across Nigeria — with 24/7 local support.",
   missionImage: "/assets/landing/control-room.jpg",
   missionCalloutText:
     "GPS trackers with temperature sensors protect the integrity of your products at every stage of the cold chain.",
@@ -185,6 +191,11 @@ const homepage = {
   ],
   stories: [
     {
+      company: "United Bank for Africa",
+      quote:
+        "Their services to the bank have been satisfactory and commendable!",
+    },
+    {
       company: "MTN Zambia",
       quote:
         "Identification of fleet drivers for departments with pool vehicles was achieved through the use of RFID driver tags.",
@@ -226,18 +237,36 @@ const homepage = {
   ctaPrimaryHref: "/about-us/contact-us",
   ctaSecondaryLabel: "Contact Us",
   ctaSecondaryHref: "/about-us/contact-us",
+  ctaBody:
+    "Talk to our Lagos team about fleet and asset solutions for Nigeria. Leave a message and we will reply as soon as we can — we're on 24/7.",
+  solutionsEyebrow: "What we do",
+  solutionsHeadline: "Our solutions, your connected fleet.",
+  solutionsCtaLabel: "View all services",
+  solutionsCtaHref: "/services",
+  benefitsEyebrow: "Why it matters",
+  benefitsHeadline: "Benefits of FMS Africa Nigeria",
+  approachCtaHref: "/about-us/contact-us",
+  approachCtaLabel: "Get a free consultation",
+  approachHeadline:
+    "We're proud to power data-driven decisions for Nigerian fleets, making a real impact on productivity and efficiency.",
+  benefitsBandImage: "/assets/landing/logistics-port.jpg",
+  benefitsBandCtaLabel: "Partner with us",
+  benefitsBandCtaHref: "/resellers",
+  approachEyebrow: "Our approach",
+  storiesEyebrow: "Testimonials",
+  storiesHeadline: "What customers say.",
 };
 
 const aboutPage = {
   heroHeadline: "Driven by innovation,\npowered by data.",
   intro:
-    "Fleet Monitoring Systems Ltd (FMS Africa) is the leading Internet of Things technology company of choice globally. Our solutions provide businesses with real-time monitoring, analysis and control over their assets — enabling asset optimization, significant OPEX reductions and productivity maximization.",
+    "FMS Africa Nigeria Ltd is the Nigerian office of Fleet Monitoring Systems (FMS Africa). We are now on the ground in Lagos — bringing proven IoT fleet, fuel, cargo and video telematics to Nigerian operators, with the backing of the wider FMS Africa group.",
   heroImage: "/assets/landing/trucks-highway.jpg",
   stats: [
-    { value: "100+", label: "Enterprise clients served globally" },
-    { value: "24/7", label: "Support across all time zones" },
-    { value: "5", label: "Continents with dedicated phone lines" },
-    { value: "3+", label: "Countries — Uganda, Kenya, Tanzania & more" },
+    { value: "100+", label: "Enterprise clients served by the FMS Africa group" },
+    { value: "24/7", label: "Support from our Nigeria office" },
+    { value: "NG", label: "Lagos office now open" },
+    { value: "5", label: "Continents covered by the group" },
   ],
   vision:
     "To become the world's trusted provider of innovative telematics solutions through innovation, efficiency, and sustainability.",
@@ -272,60 +301,73 @@ const aboutPage = {
     },
   ],
   trustedBy: [
+    "United Bank for Africa",
     "MTN Zambia",
     "African Queen",
     "Equity Bank",
     "UMEME Limited",
     "Nile Breweries Ltd",
     "Ministry of Water & Environment",
-    "International School of Uganda",
   ],
   faqs: [
     {
-      question: "What does FMS Africa do?",
+      question: "What does FMS Africa Nigeria do?",
       answer:
-        "Fleet Monitoring Systems Ltd (FMS Africa) is a leading Internet of Things technology company. We provide businesses with real-time monitoring, analysis and control over their assets — enabling optimization, OPEX reduction and productivity maximization.",
+        "FMS Africa Nigeria Ltd is the Nigerian office of Fleet Monitoring Systems (FMS Africa). We provide businesses with real-time monitoring, analysis and control over their assets — enabling optimization, OPEX reduction and productivity maximization — now with a local team in Lagos.",
     },
     {
       question: "Which industries do you serve?",
       answer:
-        "We serve logistics, banking, telecommunications, brewing, utilities, government, education and any organisation that relies on fleets, generators, cargo, cold chains or mobile assets.",
+        "We serve logistics, banking, telecommunications, brewing, utilities, government, education and any organisation that relies on fleets, generators, cargo, cold chains or mobile assets — including Nigerian operators in energy, haulage and public transport.",
     },
     {
       question: "Where do you operate?",
       answer:
-        "We operate across Uganda, Kenya, Tanzania and more, with dedicated support lines covering Europe, Asia, North America, South America and Africa.",
+        "Our Lagos office serves Nigeria and West Africa. We are part of the FMS Africa group, which also operates across Uganda, Kenya, Tanzania and more, with dedicated support lines covering Europe, Asia, North America, South America and Africa.",
     },
     {
-      question: "How can I partner with FMS Africa?",
+      question: "How can I partner with FMS Africa Nigeria?",
       answer:
-        "We are on 24/7 to react promptly to your service needs. If you are interested in partnering with us, leave a message through our partner page and we will reply as soon as we can.",
+        "We are on 24/7 to react promptly to your service needs. If you are interested in partnering with us in Nigeria, leave a message through our partner page and we will reply as soon as we can.",
     },
   ],
   featuredQuote:
     "We empower businesses with real-time operational data, enabling smarter decision making that drives productivity, cost savings and operational excellence.",
   featuredQuoteAuthor: "FMS Africa Purpose Statement",
-  ctaHeadline: "Join the connected fleet movement with FMS Africa",
+  ctaHeadline: "Join the connected fleet movement with FMS Africa Nigeria",
   ctaBody:
-    "We're on 24/7 to react promptly to your service needs. If you are interested in partnering with us, leave a message and we will reply as soon as we can.",
+    "We're on 24/7 from Lagos to react promptly to your service needs. If you are interested in partnering with us, leave a message and we will reply as soon as we can.",
+  pillarsImage: "/assets/landing/control-room.jpg",
+  pillarsEyebrow: "Who we are",
+  pillarsHeadline: "Our vision, mission and purpose",
+  pillarsCtaLabel: "Learn more",
+  pillarsCtaHref: "/about-us/contact-us",
+  valuesEyebrow: "What guides us",
+  valuesHeadline: "Core values",
+  trustedEyebrow: "Trusted by",
+  faqEyebrow: "FAQ",
+  faqHeadline: "Your questions, answered",
+  featuredEyebrow: "What we stand for",
+  featuredHeadline: "Real-time data. Smarter decisions. Better outcomes.",
+  ctaImage: "/assets/landing/hero-fleet.jpg",
 };
 
 const accreditationPage = {
   heroHeadline: "Certified compliance,\nproven quality.",
   intro:
-    "Fleet Monitoring Systems Ltd is now ISO 45001:2018 Certified — the internationally recognised standard for occupational health and safety management systems.",
+    "The FMS Africa group is ISO 45001:2018 Certified — the internationally recognised standard for occupational health and safety management systems. FMS Africa Nigeria Ltd operates to those same standards from Lagos.",
   certificateImage: "",
   certificateTitle: "ISO 45001:2018 Certified",
   highlights: [
     "Occupational Health & Safety: ISO 45001:2018 is the international standard for occupational health and safety management systems, helping organisations reduce workplace risks and create safer working conditions.",
     "Risk-Based Approach: The certification requires systematic identification of hazards, assessment of risks and implementation of controls — aligned with how we deploy telematics to mitigate fleet and field operation risks.",
     "Continuous Improvement: Certified organisations must demonstrate ongoing review and improvement of their health and safety performance — a principle that runs through our products, services and support.",
-    "Global Recognition: ISO 45001 is recognised worldwide, giving our clients confidence that FMS Africa operates to internationally accepted standards of compliance and quality.",
+    "Global Recognition: ISO 45001 is recognised worldwide, giving our Nigerian clients confidence that FMS Africa Nigeria Ltd operates to internationally accepted standards of compliance and quality.",
   ],
   commitments: [
     {
       title: "Worker Safety",
-      body: "Protecting the health and safety of our engineers, installers and field teams across every deployment.",
+      body: "Protecting the health and safety of our engineers, installers and field teams across every deployment in Nigeria.",
     },
     {
       title: "Client Assurance",
@@ -343,20 +385,25 @@ const accreditationPage = {
   stats: [
     { value: "ISO", label: "45001:2018 certified" },
     { value: "24/7", label: "Safety-first operations" },
-    { value: "5", label: "Continents served" },
-    { value: "100+", label: "Enterprise clients worldwide" },
+    { value: "NG", label: "Now serving Nigeria" },
+    { value: "100+", label: "Enterprise clients in the FMS Africa group" },
   ],
   ctaHeadline: "Need to verify our accreditation?",
   ctaBody:
-    "Contact our team for certificate verification or to learn how our ISO 45001:2018 certification supports your compliance requirements.",
+    "Contact our Lagos team for certificate verification or to learn how the FMS Africa group's ISO 45001:2018 certification supports your compliance requirements.",
+  ctaImage: "/assets/landing/hero-fleet.jpg",
 };
 
 const csrPage = {
   heroHeadline: "Giving back,\nmoving forward.",
   intro:
-    "Corporate Social Responsibility at FMS Africa — investing in community health, road safety and lasting partnerships that make a difference beyond the fleet.",
+    "Corporate Social Responsibility at FMS Africa Nigeria Ltd — investing in community health, road safety and lasting partnerships as we open in Nigeria, carrying forward the FMS Africa group's work beyond the fleet.",
   heroImage: "/assets/csr/medical-clinic-nyakinengo.jpg",
   pillars: csrPillars,
+  ctaHeadline: "Partner with us on community impact",
+  ctaBody:
+    "As we open in Nigeria, we welcome partners who share our commitment to road safety and community health.",
+  ctaImage: "/assets/landing/hero-fleet.jpg",
 };
 
 const benefitsPage = {
@@ -373,18 +420,28 @@ const benefitsPage = {
     { value: "15+", label: "Industry verticals served" },
     { value: "100%", label: "Customer-centric approach" },
   ],
-  ctaHeadline: "Join the connected fleet movement with FMS Africa",
+  ctaHeadline: "Join the connected fleet movement with FMS Africa Nigeria",
   ctaBody:
     "Don't leave success up to chance. Partner with us and chart your course to efficiency, security and peace of mind.",
+  ctaImage: "/assets/landing/hero-fleet.jpg",
+  stepsImage: "/assets/landing/hero-fleet.jpg",
+  stepsHeadline: "How we deliver",
 };
 
 const resellersPage = {
-  badge: "Reseller partners required",
+  badge: "Nigeria reseller partners required",
   heroHeadline:
-    "Expand your business horizons: become a GPS tracking reseller",
+    "Expand your business horizons: become a GPS tracking reseller in",
   heroBody:
-    "Join forces with us to tap into the booming market of GPS tracking solutions. Unlock lucrative opportunities while enjoying the support of a trusted industry leader.",
+    "Join FMS Africa Nigeria Ltd to tap into the booming market of GPS tracking solutions. Unlock lucrative opportunities while enjoying the support of a trusted industry leader — now with a local office in Lagos.",
   heroCtaLabel: "Apply now",
+  programImage: "/assets/landing/control-room.jpg",
+  whyEyebrow: "Why partner with us?",
+  whyHeadline: "Five reasons resellers choose FMS Africa Nigeria",
+  whyBody:
+    "Join forces with us to tap into the booming market of GPS tracking solutions in Nigeria. Select a benefit to learn more.",
+  howEyebrow: "How it works",
+  howHeadline: "Four steps to becoming a partner",
   benefits: resellerBenefits,
   steps: programSteps,
   regions,
@@ -394,9 +451,9 @@ const resellersPage = {
 const contactPage = {
   heroHeadline: "Get in touch",
   intro:
-    "We are on 24/7 to react promptly to your service needs. Reach our regional teams across Africa and beyond.",
-  hqLocation: "Kampala, Uganda",
-  hqPhone: "+256 200 909 900",
+    "We are on 24/7 from our Lagos office to react promptly to your service needs. FMS Africa Nigeria Ltd is your local team — backed by the wider FMS Africa group across Africa and beyond.",
+  hqLocation: "Lagos, Nigeria",
+  hqPhone: "+234 803 298 0119",
   hqEmail: "katongh@fms-ecsafrica.com",
   inquiryCards,
   offices,
@@ -410,7 +467,7 @@ const privacyPage = {
     {
       title: "Overview",
       paragraphs: [
-        "This privacy notice discloses the privacy practices for FMS Limited. This privacy notice applies solely to information collected by this website. It will notify you of the following:",
+        "This privacy notice discloses the privacy practices for FMS Africa Nigeria Ltd. This privacy notice applies solely to information collected by this website. It will notify you of the following:",
       ],
       list: [
         "What personally identifiable information is collected from you through the website, how it is used and with whom it may be shared.",

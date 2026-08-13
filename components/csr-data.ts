@@ -61,11 +61,11 @@ export const csrPillars = [
   {
     label: "03",
     title: "Local Partnerships",
-    body: "Working with established organisations like Rotary Club Kiwatule, Achelis Uganda and Care International to maximise impact on the ground.",
+    body: "Working with established organisations like Rotary Club Kiwatule, Achelis and Care International — and building new partnerships as we open in Nigeria.",
   },
   {
     label: "04",
     title: "Sustainable Impact",
-    body: "Building programmes that create lasting change in the communities where we operate across Uganda and the wider region.",
+    body: "Building programmes that create lasting change in the communities where we operate — now including Nigeria, alongside the wider FMS Africa group.",
   },
 ];

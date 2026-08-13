@@ -24,11 +24,11 @@ function settingsOrFallback(
   return {
     headerTagline:
       settings?.headerTagline ||
-      "Real-time fleet & asset intelligence across five continents",
-    headerPhone: settings?.headerPhone || "+256 772 753 829",
+      "Now open in Nigeria — fleet & asset intelligence for West Africa",
+    headerPhone: settings?.headerPhone || "+234 803 298 0119",
     loginLabel: settings?.loginLabel || "FMS IoT Login",
     loginUrl: settings?.loginUrl || footerLoginUrl,
-    logoUrl: settings?.logoUrl || "/assets/FMS-Logo-Blue-1.png",
+    logoUrl: "/assets/FMS-Logo-Blue-1.png",
     aboutLinks:
       settings?.aboutLinks?.length ? settings.aboutLinks : fallbackAboutLinks,
     primaryLinks: settings?.primaryLinks?.length
@@ -37,7 +37,7 @@ function settingsOrFallback(
     serviceLinks,
     footerBlurb:
       settings?.footerBlurb ||
-      "Our solutions provide businesses with real-time monitoring, analysis and control over their assets — enabling asset optimization, significant OPEX reductions and productivity maximization.",
+      "FMS Africa Nigeria Ltd is now on the ground in Lagos — bringing the FMS Africa group's real-time fleet, fuel and asset monitoring to Nigerian operators.",
     footerPhone: settings?.footerPhone || footerContact.phone,
     footerWhatsapp: settings?.footerWhatsapp || footerContact.whatsapp,
     contactPageUrl: settings?.contactPageUrl || footerContact.contactPage,
@@ -46,7 +46,7 @@ function settingsOrFallback(
     designCreditUrl: settings?.designCreditUrl || footerDesignCredit.href,
     footerCopyright:
       settings?.footerCopyright ||
-      "Fleet Monitoring Systems Limited. All rights reserved.",
+      "FMS Africa Nigeria Ltd. All rights reserved.",
     regionalPhones: settings?.regionalPhones?.length
       ? settings.regionalPhones
       : fallbackPhones,

@@ -137,7 +137,7 @@ export default function ContactForm() {
             id="phone"
             name="phone"
             type="tel"
-            placeholder="+256 ..."
+            placeholder="+234 ..."
             className="mt-2 w-full border border-navy-700 bg-navy-950 px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-brand-500 focus:outline-none"
           />
         </div>

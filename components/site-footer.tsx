@@ -92,13 +92,13 @@ export type SiteFooterProps = {
 
 export default function SiteFooter({
   logoUrl = "/assets/FMS-Logo-Blue-1.png",
-  footerBlurb = "Our solutions provide businesses with real-time monitoring, analysis and control over their assets — enabling asset optimization, significant OPEX reductions and productivity maximization.",
+  footerBlurb = "FMS Africa Nigeria Ltd is now on the ground in Lagos — bringing the FMS Africa group's real-time fleet, fuel and asset monitoring to Nigerian operators.",
   footerPhone = footerContact.phone,
   footerWhatsapp = footerContact.whatsapp,
   contactPageUrl = footerContact.contactPage,
   designCreditLabel = footerDesignCredit.label,
   designCreditUrl = footerDesignCredit.href,
-  footerCopyright = "Fleet Monitoring Systems Limited. All rights reserved.",
+  footerCopyright = "FMS Africa Nigeria Ltd. All rights reserved.",
   regionalPhones = defaultPhones,
   footerQuickLinks = defaultQuick,
   footerPortalLinks = defaultPortal,
@@ -139,14 +139,15 @@ export default function SiteFooter({
             <Link href="/" className="inline-flex shrink-0 items-center">
               <Image
                 src={logoUrl}
-                alt="FMS Africa — Fleet Monitoring Systems Ltd"
-                width={150}
-                height={54}
-                className="h-12 w-auto brightness-0 invert"
+                alt="FMS Africa Nigeria Ltd"
+                width={270}
+                height={126}
+                unoptimized
+                className="h-12 w-auto brightness-0 invert sm:h-14"
               />
             </Link>
             <p className="mt-3 text-xs font-medium uppercase tracking-widest text-white/50">
-              Fleet Monitoring Systems Ltd
+              FMS Africa Nigeria Ltd
             </p>
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/70">
               {footerBlurb}

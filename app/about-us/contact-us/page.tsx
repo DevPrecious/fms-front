@@ -12,7 +12,7 @@ import { getContactPage, getSiteSettings } from "@/lib/cms";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact FMS Africa — 24/7 support across Uganda, Tanzania, Kenya, Zambia, Nigeria and more. General inquiries, technical support and partnerships.",
+    "FMS Africa Nigeria Ltd — now open in Lagos. 24/7 support for Nigerian fleets, plus the wider FMS Africa group across Africa and beyond.",
 };
 
 function InquiryIcon({ type }: { type: string }) {
@@ -108,9 +108,9 @@ export default async function ContactUsPage() {
     ? settings.regionalPhones
     : fallbackPhones;
   const heroHeadline = cms?.heroHeadline || "Contact us";
-  const intro = cms?.intro || "We are on 24/7 to react promptly to your service needs. Reach our regional teams across Africa and beyond.";
-  const hqLocation = cms?.hqLocation || "Kampala, Uganda";
-  const hqPhone = cms?.hqPhone || "+256 200 909 900";
+  const intro = cms?.intro || "We are on 24/7 from our Lagos office to react promptly to your service needs. FMS Africa Nigeria Ltd is your local team — backed by the wider FMS Africa group across Africa and beyond.";
+  const hqLocation = cms?.hqLocation || "Lagos, Nigeria";
+  const hqPhone = cms?.hqPhone || "+234 803 298 0119";
   const hqEmail = cms?.hqEmail || "katongh@fms-ecsafrica.com";
 
   return (
@@ -177,7 +177,7 @@ export default async function ContactUsPage() {
               />
               <ContactDetail
                 icon="phone"
-                label="Uganda"
+                label="Nigeria"
                 value={hqPhone}
                 href={`tel:${hqPhone.replace(/[^\d+]/g, "")}`}
               />

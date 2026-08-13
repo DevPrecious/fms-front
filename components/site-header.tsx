@@ -45,8 +45,8 @@ export type SiteHeaderProps = {
 };
 
 export default function SiteHeader({
-  headerTagline = "Real-time fleet & asset intelligence across five continents",
-  headerPhone = "+256 772 753 829",
+  headerTagline = "Now open in Nigeria — fleet & asset intelligence for West Africa",
+  headerPhone = "+234 803 298 0119",
   loginLabel = "FMS IoT Login",
   loginUrl = footerLoginUrl,
   logoUrl = "/assets/FMS-Logo-Blue-1.png",
@@ -142,11 +142,12 @@ export default function SiteHeader({
           >
             <Image
               src={logoUrl}
-              alt="FMS Africa — Fleet Monitoring Systems Ltd"
-              width={150}
-              height={54}
+              alt="FMS Africa Nigeria Ltd"
+              width={270}
+              height={126}
               priority
-              className={`h-12 w-auto transition-[filter] duration-300 ${
+              unoptimized
+              className={`h-12 w-auto sm:h-14 ${
                 isSolid ? "" : "brightness-0 invert"
               }`}
             />

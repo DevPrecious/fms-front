@@ -3,7 +3,7 @@ import Link from "next/link";
 import HeroSlider from "@/components/hero-slider";
 import ConsultationCta from "@/components/consultation-cta";
 import TestimonialsMarquee from "@/components/testimonials-marquee";
-import { getHeroSlides, getHomepage, getSiteSettings } from "@/lib/cms";
+import { getHeroSlides, getHomepage } from "@/lib/cms";
 import type { ReactNode } from "react";
 import type { HomepageContent, HeroSlide } from "@/lib/cms-types";
 
@@ -26,9 +26,9 @@ function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 const fallbackStats = [
   { value: "100%", label: "Customer satisfaction with our work" },
-  { value: "24/7", label: "Prompt reaction to your service needs" },
-  { value: "3+", label: "Countries — Uganda, Kenya, Tanzania & more" },
-  { value: "5", label: "Continents with dedicated support lines" },
+  { value: "24/7", label: "Local support from our Nigeria office" },
+  { value: "NG", label: "Lagos office now serving Nigeria" },
+  { value: "5", label: "Continents covered by the FMS Africa group" },
 ];
 
 const fallbackSolutions = [
@@ -104,6 +104,11 @@ const fallbackPillars = [
 
 const fallbackStories = [
   {
+    company: "United Bank for Africa",
+    quote:
+      "Their services to the bank have been satisfactory and commendable!",
+  },
+  {
     company: "MTN Zambia",
     quote:
       "Identification of fleet drivers for departments with pool vehicles was achieved through the use of RFID driver tags.",
@@ -153,9 +158,9 @@ const fallbackHomepage: Omit<HomepageContent, "id" | "solutions"> & {
   stats: fallbackStats,
   missionEyebrow: "Who we are",
   missionHeadline:
-    "We are dedicated to giving businesses real-time monitoring, analysis and control over their assets.",
+    "FMS Africa Nigeria Ltd is now on the ground — giving Nigerian businesses real-time monitoring, analysis and control over their assets.",
   missionBody:
-    "Our solutions enable asset optimization, significant OPEX reductions and productivity maximization — for fleets, generators, cargo and cold chains across Africa and beyond.",
+    "Our Lagos office brings the FMS Africa group's IoT, fuel, video telematics and cold-chain platforms to fleets, generators, cargo and logistics operators across Nigeria — with 24/7 local support.",
   missionImage: "/assets/landing/control-room.jpg",
   missionCalloutText:
     "GPS trackers with temperature sensors protect the integrity of your products at every stage of the cold chain.",
@@ -174,7 +179,7 @@ const fallbackHomepage: Omit<HomepageContent, "id" | "solutions"> & {
   ctaImage: "/assets/landing/hero-fleet.jpg",
   ctaHeadline: "Get started with a free consultation",
   ctaBody:
-    "Interested in our products and want to know more? Leave us a message and we will reply as soon as we can — we're on 24/7.",
+    "Talk to our Lagos team about fleet and asset solutions for Nigeria. Leave a message and we will reply as soon as we can — we're on 24/7.",
   ctaPrimaryLabel: "Get a free consultation",
   ctaPrimaryHref: "/about-us/contact-us",
   ctaSecondaryLabel: "Contact Us",
@@ -183,7 +188,7 @@ const fallbackHomepage: Omit<HomepageContent, "id" | "solutions"> & {
   benefitsBandCtaLabel: "Partner with us",
   benefitsBandCtaHref: "/resellers",
   benefitsEyebrow: "Why it matters",
-  benefitsHeadline: "Benefits of FMS Africa",
+  benefitsHeadline: "Benefits of FMS Africa Nigeria",
   approachEyebrow: "Our approach",
   approachHeadline:
     "We're proud to power data-driven decisions, making a real impact on productivity and efficiency.",
@@ -194,10 +199,9 @@ const fallbackHomepage: Omit<HomepageContent, "id" | "solutions"> & {
 };
 
 export default async function Home() {
-  const [cmsHome, cmsSlides, settings] = await Promise.all([
+  const [cmsHome, cmsSlides] = await Promise.all([
     getHomepage().catch(() => null),
     getHeroSlides().catch(() => [] as HeroSlide[]),
-    getSiteSettings().catch(() => null),
   ]);
 
   const home = cmsHome ?? fallbackHomepage;
@@ -462,13 +466,14 @@ export default async function Home() {
             </div>
 
             <div className="flex items-center justify-center py-6 lg:px-6">
-              <div className="relative flex h-44 w-44 items-center justify-center sm:h-52 sm:w-52">
+              <div className="relative flex min-h-28 w-full max-w-xs items-center justify-center sm:min-h-36 sm:max-w-sm">
                 <Image
-                  src={settings?.logoUrl || "/assets/FMS-Logo-Blue-1.png"}
-                  alt="FMS Africa"
-                  width={1060}
-                  height={5008}
-                  className="relative z-10 h-20 w-auto brightness-0 invert opacity-90 sm:h-32"
+                  src="/assets/FMS-Logo-Blue-1.png"
+                  alt="FMS Africa Nigeria Ltd"
+                  width={270}
+                  height={126}
+                  unoptimized
+                  className="relative z-10 h-16 w-auto brightness-0 invert opacity-90 sm:h-20"
                 />
               </div>
             </div>

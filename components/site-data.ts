@@ -114,8 +114,9 @@ export const footerPortalLinks: NavLink[] = [
 ];
 
 export const footerContact = {
-  phone: "+256 200 909 900",
-  whatsapp: "https://api.whatsapp.com/send?phone=+256772753829&text=Hello%20FMS%20Africa",
+  phone: "+234 803 298 0119",
+  whatsapp:
+    "https://api.whatsapp.com/send?phone=+2348032980119&text=Hello%20FMS%20Africa%20Nigeria",
   contactPage: "/about-us/contact-us",
 };
 
@@ -125,9 +126,9 @@ export const footerDesignCredit = {
 };
 
 export const regionalPhones = [
+  { region: "Nigeria", phone: "+234 803 298 0119" },
   { region: "Europe", phone: "+44 745 235 3356" },
   { region: "Asia", phone: "+60 11 3772 7425" },
   { region: "N. America", phone: "+1 236 991 9802" },
   { region: "S. America", phone: "+52 614 242 5538" },
-  { region: "Africa", phone: "+256 772 753 829" },
 ];

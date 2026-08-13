@@ -5,9 +5,9 @@ import Link from "next/link";
 import { regions as defaultRegions, programSteps } from "./reseller-data";
 
 export default function ResellerHero({
-  badge = "Reseller partners required",
+  badge = "Nigeria reseller partners required",
   heroHeadline = "Expand your business horizons: become a GPS tracking reseller in",
-  heroBody = "Join forces with us to tap into the booming market of GPS tracking solutions. Unlock lucrative opportunities while enjoying the support of a trusted industry leader.",
+  heroBody = "Join FMS Africa Nigeria Ltd to tap into the booming market of GPS tracking solutions. Unlock lucrative opportunities while enjoying the support of a trusted industry leader — now with a local office in Lagos.",
   heroCtaLabel = "Apply now",
   regions = defaultRegions,
   steps = programSteps,
@@ -21,7 +21,7 @@ export default function ResellerHero({
 } = {}) {
   const regionOptions = regions.length > 0 ? regions : defaultRegions;
   const stepItems = steps.length > 0 ? steps : programSteps;
-  const [country, setCountry] = useState("your Country");
+  const [country, setCountry] = useState("Nigeria");
 
   return (
     <section className="relative overflow-hidden bg-navy-950">

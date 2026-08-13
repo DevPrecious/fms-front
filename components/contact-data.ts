@@ -3,7 +3,7 @@ export const inquiryCards = [
     id: "general",
     title: "General Inquiries",
     description:
-      "Questions about our products, services or how FMS Africa can support your fleet and asset monitoring needs.",
+      "Questions about our products, services or how FMS Africa Nigeria Ltd can support your fleet and asset monitoring needs.",
     email: "katongh@fms-ecsafrica.com",
     icon: "briefcase",
   },
@@ -27,6 +27,11 @@ export const inquiryCards = [
 ];
 
 export const offices = [
+  {
+    country: "Nigeria (Head office)",
+    phone: "(+234) 803-2980119",
+    email: "katongh@fms-ecsafrica.com",
+  },
   {
     country: "Uganda",
     phone: "(+256) 200-909900 / 772-850055",
@@ -57,23 +62,18 @@ export const offices = [
     phone: "(+250) 787 494031",
     email: "katongh@fms-ecsafrica.com",
   },
-  {
-    country: "Nigeria",
-    phone: "(+234) 803-2980119",
-    email: "katongh@fms-ecsafrica.com",
-  },
 ];
 
 export const contactFaqs = [
   {
     question: "What are your support hours?",
     answer:
-      "FMS Africa provides 24/7 support to react promptly to your service needs. Our regional teams across Africa, Europe and beyond ensure you can reach us at any time.",
+      "FMS Africa Nigeria Ltd provides 24/7 support from Lagos, backed by the wider FMS Africa group across Africa, Europe and beyond.",
   },
   {
     question: "Which countries do you operate in?",
     answer:
-      "We operate across Uganda, Tanzania, Kenya, Zambia, Nigeria, Rwanda, DR Congo and more — with dedicated contact lines for Mozambique, Zimbabwe, Angola, Eswatini, Ethiopia, Malawi, South Sudan and Namibia.",
+      "Our Nigeria office in Lagos is the local home of FMS Africa for West Africa. The group also operates across Uganda, Tanzania, Kenya, Zambia, Rwanda, DR Congo and more — with contact lines for Mozambique, Zimbabwe, Angola, Eswatini, Ethiopia, Malawi, South Sudan and Namibia.",
   },
   {
     question: "How quickly will I receive a response?",

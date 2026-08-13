@@ -16,7 +16,7 @@ import { getResellersPage } from "@/lib/cms";
 export const metadata: Metadata = {
   title: "Reseller Program",
   description:
-    "Join the FMS Africa reseller program — become a GPS tracking solutions distributor in your country with training, support and lucrative margins.",
+    "Join the FMS Africa Nigeria Ltd reseller program — become a GPS tracking solutions distributor in Nigeria with training, local support and lucrative margins.",
 };
 
 export default async function ResellersPage() {
@@ -44,11 +44,11 @@ export default async function ResellersPage() {
             {cms?.whyEyebrow || "Why partner with us?"}
           </p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
-            {cms?.whyHeadline || "Five reasons resellers choose FMS Africa"}
+            {cms?.whyHeadline || "Five reasons resellers choose FMS Africa Nigeria"}
           </h2>
           <p className="mt-5 text-base leading-7 text-slate-600">
             {cms?.whyBody ||
-              "Join forces with us to tap into the booming market of GPS tracking solutions in your country. Select a benefit to learn more."}
+              "Join forces with us to tap into the booming market of GPS tracking solutions in Nigeria. Select a benefit to learn more."}
           </p>
         </div>
 

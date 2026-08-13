@@ -8,7 +8,7 @@ import ConsultationCta from "@/components/consultation-cta";
 export const metadata: Metadata = {
   title: "Accreditations",
   description:
-    "Fleet Monitoring Systems Ltd (FMS Africa) is ISO 45001:2018 certified — demonstrating our commitment to occupational health, safety and quality management.",
+    "FMS Africa Nigeria Ltd operates under the FMS Africa group, which is ISO 45001:2018 certified for occupational health, safety and quality management.",
 };
 
 const fallback_highlights = [
@@ -145,15 +145,15 @@ export default async function AccreditationsPage() {
                 </li>
                 <li className="text-sm leading-7 text-slate-600">
                   <span className="font-bold text-navy-900">Organisation:</span>{" "}
-                  Fleet Monitoring Systems Ltd
+                  Fleet Monitoring Systems Ltd (FMS Africa group)
                 </li>
                 <li className="text-sm leading-7 text-slate-600">
                   <span className="font-bold text-navy-900">Scope:</span>{" "}
                   Occupational Health &amp; Safety Management
                 </li>
                 <li className="text-sm leading-7 text-slate-600">
-                  <span className="font-bold text-navy-900">Region:</span>{" "}
-                  Uganda
+                  <span className="font-bold text-navy-900">Serving:</span>{" "}
+                  Nigeria (Lagos office) and the FMS Africa group
                 </li>
               </ul>
             </div>

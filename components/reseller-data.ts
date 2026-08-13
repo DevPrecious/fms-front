@@ -67,11 +67,11 @@ export const programSteps = [
 ];
 
 export const regions = [
+  "Nigeria",
   "Uganda",
   "Kenya",
   "Tanzania",
   "Zambia",
-  "Nigeria",
   "Rwanda",
   "DR Congo",
   "Mozambique",
@@ -85,6 +85,12 @@ export const regions = [
 ];
 
 export const testimonials = [
+  {
+    quote:
+      "Their services to the bank have been satisfactory and commendable!",
+    author: "Emily Abitegeka",
+    company: "United Bank for Africa",
+  },
   {
     quote:
       "The company has continued to maintain close interaction with us in a bid to receive feedback, adequately handle its obligations, quickly respond to challenges or breakdowns in case need arise, and provide preventative measures at the shortest possible time.",
@@ -102,12 +108,6 @@ export const testimonials = [
       "Over a period of ten years that they provided us their services, Fleet Monitoring Systems Limited has been very reliable, responsive, and have continued to provide us with quality services. We are glad to recommend them for any business.",
     author: "Mercy Mukalere",
     company: "Care International in Uganda",
-  },
-  {
-    quote:
-      "Their services to the bank have been satisfactory and commendable!",
-    author: "Emily Abitegeka",
-    company: "United Bank for Africa",
   },
   {
     quote:

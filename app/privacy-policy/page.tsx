@@ -6,14 +6,14 @@ import { getPrivacyPage, getSiteSettings } from "@/lib/cms";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Privacy Policy for Data Protection and User Privacy — how FMS Africa collects, uses and protects your information.",
+    "Privacy Policy for Data Protection and User Privacy — how FMS Africa Nigeria Ltd collects, uses and protects your information.",
 };
 
 const fallbackSections = [
   {
     title: "Overview",
     paragraphs: [
-      "This privacy notice discloses the privacy practices for FMS Limited. This privacy notice applies solely to information collected by this website. It will notify you of the following:",
+      "This privacy notice discloses the privacy practices for FMS Africa Nigeria Ltd. This privacy notice applies solely to information collected by this website. It will notify you of the following:",
     ],
     list: [
       "What personally identifiable information is collected from you through the website, how it is used and with whom it may be shared.",

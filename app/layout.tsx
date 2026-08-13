@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "FMS Africa | Fleet Monitoring Systems Ltd",
-    template: "%s | FMS Africa",
+    default: "FMS Africa Nigeria Ltd | Fleet Monitoring Systems",
+    template: "%s | FMS Africa Nigeria",
   },
   description:
-    "Real-time fleet and asset monitoring solutions — vehicle tracking, fuel management, AI-powered video telematics and more, across five continents.",
+    "FMS Africa Nigeria Ltd is now open in Lagos — real-time fleet and asset monitoring, vehicle tracking, fuel management and AI video telematics for Nigerian operators.",
 };
 
 export const revalidate = 0;

@@ -9,7 +9,7 @@ import ConsultationCta from "@/components/consultation-cta";
 export const metadata: Metadata = {
   title: "Corporate Social Responsibility",
   description:
-    "FMS Africa's CSR initiatives — funding medical clinics, road safety training and community partnerships across Uganda.",
+    "FMS Africa Nigeria Ltd CSR — community health, road safety and partnerships, carried forward from the FMS Africa group as we open in Nigeria.",
 };
 
 export default async function CsrPage() {
@@ -32,7 +32,7 @@ export default async function CsrPage() {
       : fallbackInitiatives;
   const heroHeadline = cmsPage?.heroHeadline || "Giving back,\nmoving forward.";
   const [heroLine1, heroLine2] = heroHeadline.split("\n");
-  const intro = cmsPage?.intro || "Corporate Social Responsibility at FMS Africa — investing in community health, road safety and lasting partnerships that make a difference beyond the fleet.";
+  const intro = cmsPage?.intro || "Corporate Social Responsibility at FMS Africa Nigeria Ltd — investing in community health, road safety and lasting partnerships as we open in Nigeria, carrying forward the FMS Africa group's work beyond the fleet.";
   const heroImage = cmsPage?.heroImage || "/assets/csr/medical-clinic-nyakinengo.jpg";
 
   return (
@@ -56,7 +56,7 @@ export default async function CsrPage() {
         <div className="relative aspect-video w-full overflow-hidden">
           <Image
             src={heroImage}
-            alt="FMS-funded medical clinic in Nyakinengo Village, Uganda"
+            alt="FMS-funded medical clinic — a flagship FMS Africa group CSR project"
             fill
             priority
             sizes="100vw"
@@ -71,9 +71,10 @@ export default async function CsrPage() {
           Corporate Social Responsibility
         </p>
         <p className="mt-6 text-lg leading-8 text-slate-600 sm:text-xl sm:leading-9">
-          At Fleet Monitoring Systems Ltd, we believe technology should serve
-          people — not just businesses. Our CSR programmes extend our commitment
-          to safety, health and community wellbeing across Uganda and beyond.
+          At FMS Africa Nigeria Ltd, we believe technology should serve
+          people — not just businesses. Our CSR programmes extend the FMS Africa
+          group's commitment to safety, health and community wellbeing into
+          Nigeria and across the markets we serve.
         </p>
       </section>
 
