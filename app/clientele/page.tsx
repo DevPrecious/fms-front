@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ClienteleView from "@/components/clientele-view";
+import ConsultationCta from "@/components/consultation-cta";
 import { clientCount as fallbackCount, clienteleLogos as fallbackLogos, type ClientLogo } from "@/components/clientele-data";
-import { getClientele } from "@/lib/cms";
-
-export const revalidate = 60;
+import { getClientele, getClientelePage } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Our Clientele",
@@ -14,7 +13,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ClientelePage() {
-  const cms = await getClientele().catch(() => []);
+  const [cms, listing] = await Promise.all([
+    getClientele().catch(() => []),
+    getClientelePage().catch(() => null),
+  ]);
   const logos: ClientLogo[] =
     cms.length > 0
       ? cms.map((item, index) => ({
@@ -46,14 +48,17 @@ export default async function ClientelePage() {
             <span aria-hidden="true">•</span>
           </p>
           <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Trusted by{" "}
-            <span className="text-brand-500">{clientCount}+</span> organisations
-            across Africa
+            {listing?.heroHeadline || (
+              <>
+                Trusted by{" "}
+                <span className="text-brand-500">{clientCount}+</span>{" "}
+                organisations across Africa
+              </>
+            )}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-7 text-white/75 sm:text-lg">
-            From global NGOs and development agencies to banks, government
-            ministries and leading corporates — FMS Africa powers fleet and asset
-            intelligence for partners who demand reliability.
+            {listing?.intro ||
+              "From global NGOs and development agencies to banks, government ministries and leading corporates — FMS Africa powers fleet and asset intelligence for partners who demand reliability."}
           </p>
 
           <div className="mt-10 grid grid-cols-2 gap-px bg-white/10 sm:grid-cols-4">
@@ -91,40 +96,7 @@ export default async function ClientelePage() {
 
       <ClienteleView logos={logos} />
 
-      {/* CTA */}
-      <section className="relative overflow-hidden border-t border-slate-200">
-        <Image
-          src="/assets/landing/control-room.jpg"
-          alt=""
-          width={1200}
-          height={800}
-          className="h-80 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/80" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Join organisations that trust FMS Africa
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80">
-            Ready to become our next success story? Get in touch for a free
-            consultation.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/about-us/contact-us"
-              className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-            >
-              Request a Free Quote
-            </Link>
-            <Link
-              href="/about-us/contact-us"
-              className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ConsultationCta />
     </div>
   );
 }

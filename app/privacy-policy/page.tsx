@@ -3,8 +3,6 @@ import Link from "next/link";
 import { footerContact } from "@/components/site-data";
 import { getPrivacyPage, getSiteSettings } from "@/lib/cms";
 
-export const revalidate = 60;
-
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:

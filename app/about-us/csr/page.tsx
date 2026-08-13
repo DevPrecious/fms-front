@@ -4,8 +4,7 @@ import Link from "next/link";
 import CsrInitiatives from "@/components/csr-initiatives";
 import { csrPillars as fallbackPillars, csrInitiatives as fallbackInitiatives, type CsrInitiative } from "@/components/csr-data";
 import { getCsrPage, getCsrInitiatives } from "@/lib/cms";
-
-export const revalidate = 60;
+import ConsultationCta from "@/components/consultation-cta";
 
 export const metadata: Metadata = {
   title: "Corporate Social Responsibility",
@@ -123,41 +122,14 @@ export default async function CsrPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/assets/landing/logistics-port.jpg"
-          alt=""
-          width={1200}
-          height={800}
-          className="h-96 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/75" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            Partner with us on community impact
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-            We&apos;re on 24/7 to react promptly to your service needs. If you
-            are interested in partnering with us on CSR initiatives, leave a
-            message and we will reply as soon as we can.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/resellers"
-              className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-            >
-              Partner with us
-            </Link>
-            <Link
-              href="/about-us/contact-us"
-              className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ConsultationCta
+        image={cmsPage?.ctaImage}
+        headline={cmsPage?.ctaHeadline || "Partner with us on community impact"}
+        body={
+          cmsPage?.ctaBody ||
+          "We're on 24/7 to react promptly to your service needs. If you are interested in partnering with us on CSR initiatives, leave a message and we will reply as soon as we can."
+        }
+      />
     </div>
   );
 }

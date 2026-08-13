@@ -27,6 +27,11 @@ export interface SiteSettings {
   footerQuickLinks: NavLink[];
   footerPortalLinks: NavLink[];
   footerFeaturedProducts: NavLink[];
+  ctaImage: string;
+  ctaHeadline: string;
+  ctaBody: string;
+  ctaButtonLabel: string;
+  ctaHref: string;
 }
 
 export interface HeroSlide {
@@ -59,11 +64,27 @@ export interface HomepageContent {
   solutionsPhotoHref: string;
   solutionsPhotoImage: string;
   solutionsPhotoTitle: string;
+  solutionsEyebrow: string;
+  solutionsHeadline: string;
+  solutionsCtaLabel: string;
+  solutionsCtaHref: string;
   benefits: { title: string; body: string }[];
   pillars: { title: string; body: string }[];
   stories: { company: string; quote: string }[];
+  benefitsBandImage: string;
+  benefitsBandCtaLabel: string;
+  benefitsBandCtaHref: string;
+  benefitsEyebrow: string;
+  benefitsHeadline: string;
+  approachEyebrow: string;
+  approachHeadline: string;
+  approachCtaLabel: string;
+  approachCtaHref: string;
+  storiesEyebrow: string;
+  storiesHeadline: string;
   ctaImage: string;
   ctaHeadline: string;
+  ctaBody: string;
   ctaPrimaryLabel: string;
   ctaPrimaryHref: string;
   ctaSecondaryLabel: string;
@@ -84,14 +105,28 @@ export interface AboutPageContent {
   faqs: { question: string; answer: string }[];
   featuredQuote: string;
   featuredQuoteAuthor: string;
+  featuredEyebrow: string;
+  featuredHeadline: string;
+  pillarsImage: string;
+  pillarsEyebrow: string;
+  pillarsHeadline: string;
+  pillarsCtaLabel: string;
+  pillarsCtaHref: string;
+  valuesEyebrow: string;
+  valuesHeadline: string;
+  trustedEyebrow: string;
+  faqEyebrow: string;
+  faqHeadline: string;
   ctaHeadline: string;
   ctaBody: string;
+  ctaImage: string;
 }
 
 export interface AccreditationPageContent {
   id?: string;
   heroHeadline: string;
   intro: string;
+  heroImage: string;
   certificateImage: string;
   certificateTitle: string;
   highlights: string[];
@@ -99,6 +134,7 @@ export interface AccreditationPageContent {
   stats: { value: string; label: string }[];
   ctaHeadline: string;
   ctaBody: string;
+  ctaImage: string;
 }
 
 export interface CsrInitiative {
@@ -119,6 +155,9 @@ export interface CsrPageContent {
   intro: string;
   heroImage: string;
   pillars: { label: string; title: string; body: string }[];
+  ctaHeadline: string;
+  ctaBody: string;
+  ctaImage: string;
 }
 
 export interface BenefitsPageContent {
@@ -126,12 +165,15 @@ export interface BenefitsPageContent {
   heroHeadline: string;
   intro: string;
   heroImage: string;
+  stepsImage: string;
+  stepsHeadline: string;
   steps: { number: string; title: string; summary: string; details: string }[];
   industries: { title: string; body: string }[];
   pillars: { title: string; body: string }[];
   stats: { value: string; label: string }[];
   ctaHeadline: string;
   ctaBody: string;
+  ctaImage: string;
 }
 
 export interface ResellersPageContent {
@@ -140,10 +182,36 @@ export interface ResellersPageContent {
   heroHeadline: string;
   heroBody: string;
   heroCtaLabel: string;
+  programImage: string;
+  whyEyebrow: string;
+  whyHeadline: string;
+  whyBody: string;
+  howEyebrow: string;
+  howHeadline: string;
   benefits: { id: string; title: string; summary: string; detail: string }[];
   steps: { step: string; title: string; body: string }[];
   regions: string[];
   testimonials: { quote: string; author: string; company: string }[];
+}
+
+export interface GalleryPageContent {
+  id?: string;
+  heroHeadline: string;
+  intro: string;
+  heroImage: string;
+}
+
+export interface BlogPageContent {
+  id?: string;
+  heroHeadline: string;
+  intro: string;
+}
+
+export interface ClientelePageContent {
+  id?: string;
+  heroHeadline: string;
+  intro: string;
+  stats: { value: string; label: string }[];
 }
 
 export interface ContactPageContent {

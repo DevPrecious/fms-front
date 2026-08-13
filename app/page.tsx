@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "@/components/hero-slider";
-import { getHeroSlides, getHomepage } from "@/lib/cms";
+import ConsultationCta from "@/components/consultation-cta";
+import TestimonialsMarquee from "@/components/testimonials-marquee";
+import { getHeroSlides, getHomepage, getSiteSettings } from "@/lib/cms";
 import type { ReactNode } from "react";
 import type { HomepageContent, HeroSlide } from "@/lib/cms-types";
-
-export const revalidate = 60;
 
 function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -164,21 +164,40 @@ const fallbackHomepage: Omit<HomepageContent, "id" | "solutions"> & {
   solutionsPhotoHref: "/services/fleet-management",
   solutionsPhotoImage: "/assets/landing/trucks-highway.jpg",
   solutionsPhotoTitle: "Fleet Management",
+  solutionsEyebrow: "What we do",
+  solutionsHeadline: "Our solutions, your connected fleet.",
+  solutionsCtaLabel: "View all services",
+  solutionsCtaHref: "/services",
   benefits: fallbackBenefits,
   pillars: fallbackPillars,
   stories: fallbackStories,
   ctaImage: "/assets/landing/hero-fleet.jpg",
   ctaHeadline: "Get started with a free consultation",
-  ctaPrimaryLabel: "Request a Free Quote",
+  ctaBody:
+    "Interested in our products and want to know more? Leave us a message and we will reply as soon as we can — we're on 24/7.",
+  ctaPrimaryLabel: "Get a free consultation",
   ctaPrimaryHref: "/about-us/contact-us",
   ctaSecondaryLabel: "Contact Us",
   ctaSecondaryHref: "/about-us/contact-us",
+  benefitsBandImage: "/assets/landing/logistics-port.jpg",
+  benefitsBandCtaLabel: "Partner with us",
+  benefitsBandCtaHref: "/resellers",
+  benefitsEyebrow: "Why it matters",
+  benefitsHeadline: "Benefits of FMS Africa",
+  approachEyebrow: "Our approach",
+  approachHeadline:
+    "We're proud to power data-driven decisions, making a real impact on productivity and efficiency.",
+  approachCtaLabel: "Get a free consultation",
+  approachCtaHref: "/about-us/contact-us",
+  storiesEyebrow: "Testimonials",
+  storiesHeadline: "What customers say.",
 };
 
 export default async function Home() {
-  const [cmsHome, cmsSlides] = await Promise.all([
+  const [cmsHome, cmsSlides, settings] = await Promise.all([
     getHomepage().catch(() => null),
     getHeroSlides().catch(() => [] as HeroSlide[]),
+    getSiteSettings().catch(() => null),
   ]);
 
   const home = cmsHome ?? fallbackHomepage;
@@ -206,7 +225,7 @@ export default async function Home() {
 
       {/* ── Mission + stats ──────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
               <span className="mr-2 inline-block h-2 w-2 bg-brand-500" />
@@ -234,7 +253,9 @@ export default async function Home() {
                 {home.missionCalloutText}
               </p>
               <Link
-                href={home.missionCalloutHref || "/services/cold-chain-management"}
+                href={
+                  home.missionCalloutHref || "/services/cold-chain-management"
+                }
                 className="mt-6 inline-flex h-10 w-10 items-center justify-center bg-navy-900 text-brand-500 transition-transform hover:scale-110"
                 aria-label="Learn about cold chain management"
               >
@@ -265,17 +286,17 @@ export default async function Home() {
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
                 <span className="mr-2 inline-block h-2 w-2 bg-brand-500" />
-                What we do
+                {home.solutionsEyebrow || "What we do"}
               </p>
               <h2 className="mt-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
-                Our solutions, your connected fleet.
+                {home.solutionsHeadline || "Our solutions, your connected fleet."}
               </h2>
             </div>
             <Link
-              href="/services"
+              href={home.solutionsCtaHref || "/services"}
               className="bg-navy-900 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-navy-700"
             >
-              View all services
+              {home.solutionsCtaLabel || "View all services"}
             </Link>
           </div>
 
@@ -297,7 +318,9 @@ export default async function Home() {
                       {"icon" in solution && solution.icon ? (
                         solution.icon
                       ) : (
-                        <path d={(solution as { iconPath?: string }).iconPath || ""} />
+                        <path
+                          d={(solution as { iconPath?: string }).iconPath || ""}
+                        />
                       )}
                     </svg>
                   </span>
@@ -321,7 +344,10 @@ export default async function Home() {
               className="group relative min-h-70 overflow-hidden"
             >
               <Image
-                src={home.solutionsPhotoImage || "/assets/landing/trucks-highway.jpg"}
+                src={
+                  home.solutionsPhotoImage ||
+                  "/assets/landing/trucks-highway.jpg"
+                }
                 alt="Fleet management for heavy trucks"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -345,13 +371,17 @@ export default async function Home() {
       {/* ── Benefits accordion ───────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
-            <span className="mr-2 inline-block h-2 w-2 bg-brand-500" />
-            Why it matters
-          </p>
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
-            Benefits of <span className="text-navy-600">FMS Africa</span>
-          </h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
+              <span className="mr-2 inline-block h-2 w-2 bg-brand-500" />
+              {home.benefitsEyebrow || "Why it matters"}
+            </p>
+            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
+              {home.benefitsHeadline || (
+                <>
+                  Benefits of <span className="text-navy-600">FMS Africa</span>
+                </>
+              )}
+            </h2>
         </div>
 
         <div className="mx-auto mt-12 max-w-3xl divide-y divide-slate-200 border-y border-slate-200">
@@ -387,7 +417,9 @@ export default async function Home() {
 
         <div className="relative mt-14 overflow-hidden">
           <Image
-            src="/assets/landing/logistics-port.jpg"
+            src={
+              home.benefitsBandImage || "/assets/landing/logistics-port.jpg"
+            }
             alt="Container port logistics monitored end to end"
             width={1200}
             height={800}
@@ -395,129 +427,93 @@ export default async function Home() {
           />
           <div className="absolute inset-0 bg-navy-950/30" />
           <Link
-            href="/resellers"
+            href={home.benefitsBandCtaHref || "/resellers"}
             className="absolute bottom-6 left-6 bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-all hover:-translate-y-0.5 hover:bg-brand-400"
           >
-            Partner with us
+            {home.benefitsBandCtaLabel || "Partner with us"}
           </Link>
         </div>
       </section>
 
-      {/* ── Dark pillars panel ───────────────────────────────── */}
+      {/* ── Our approach (achievement-style, logo center) ───── */}
       <section className="bg-navy-950">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-brand-500">
-              Our approach
+              • {home.approachEyebrow || "Our approach"} •
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-              We&apos;re proud to power data-driven decisions, making a real
-              impact on productivity and efficiency.
+              {home.approachHeadline ||
+                "We're proud to power data-driven decisions, making a real impact on productivity and efficiency."}
             </h2>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {pillars.map(({ title, body }) => (
-              <div
-                key={title}
-                className="border border-white/10 bg-white/5 p-7 transition-colors hover:border-brand-500/40 hover:bg-white/10"
-              >
-                <span className="inline-block h-2 w-8 bg-brand-500" />
-                <h3 className="mt-5 text-lg font-bold text-white">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-white/70">{body}</p>
+          <div className="mt-14 grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
+            <div className="flex flex-col gap-4">
+              {pillars.slice(0, 2).map(({ title, body }) => (
+                <div
+                  key={title}
+                  className="flex-1 border-t border-white/10 bg-white/5 p-7 transition-colors hover:bg-white/10 lg:border-t-0 lg:border-b"
+                >
+                  <h3 className="text-lg font-bold text-brand-500">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/75">{body}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-center py-6 lg:px-6">
+              <div className="relative flex h-44 w-44 items-center justify-center sm:h-52 sm:w-52">
+                <Image
+                  src={settings?.logoUrl || "/assets/FMS-Logo-Blue-1.png"}
+                  alt="FMS Africa"
+                  width={1060}
+                  height={5008}
+                  className="relative z-10 h-20 w-auto brightness-0 invert opacity-90 sm:h-32"
+                />
               </div>
-            ))}
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {pillars.slice(2, 4).map(({ title, body }) => (
+                <div
+                  key={title}
+                  className="flex-1 border-t border-white/10 bg-white/5 p-7 transition-colors hover:bg-white/10 lg:border-t-0 lg:border-b"
+                >
+                  <h3 className="text-lg font-bold text-brand-500">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-white/75">{body}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 text-center">
             <Link
-              href="/about-us/contact-us"
+              href={home.approachCtaHref || "/about-us/contact-us"}
               className="inline-block bg-brand-500 px-7 py-3.5 text-sm font-bold text-navy-900 transition-all hover:-translate-y-0.5 hover:bg-brand-400"
             >
-              Get a free consultation
+              {home.approachCtaLabel || "Get a free consultation"}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ── Success stories ──────────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
-            <span className="mr-2 inline-block h-2 w-2 bg-brand-500" />
-            Success stories
-          </p>
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
-            What our clients achieve
-          </h2>
-        </div>
+      {/* ── Testimonials marquee ─────────────────────────────── */}
+      <TestimonialsMarquee
+        items={stories.map(({ company, quote }) => ({
+          company,
+          quote,
+        }))}
+        eyebrow={home.storiesEyebrow || "Testimonials"}
+        headline={home.storiesHeadline || "What customers say."}
+      />
 
-        <div className="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3 *:mb-5">
-          {stories.map(({ company, quote }) => (
-            <figure
-              key={company}
-              className="break-inside-avoid border border-slate-200 bg-white p-7"
-            >
-              <svg
-                className="h-6 w-6 text-brand-500"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M4 12c0-4 2.4-6.7 6-8l.8 1.6C8.6 6.8 7.4 8.4 7.2 10H10v7H4v-5zm10 0c0-4 2.4-6.7 6-8l.8 1.6c-2.2 1.2-3.4 2.8-3.6 4.4H20v7h-6v-5z" />
-              </svg>
-              <blockquote className="mt-4 text-sm leading-7 text-slate-600">
-                {quote}
-              </blockquote>
-              <figcaption className="mt-5 flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center bg-navy-900 text-sm font-bold text-brand-500">
-                  {company.charAt(0)}
-                </span>
-                <span className="text-sm font-bold text-navy-900">
-                  {company}
-                </span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Final CTA ────────────────────────────────────────── */}
-      <section>
-        <div className="relative w-full overflow-hidden">
-          <Image
-            src={home.ctaImage || "/assets/landing/hero-fleet.jpg"}
-            alt=""
-            width={2000}
-            height={1326}
-            className="h-105 w-full object-cover object-bottom"
-          />
-          <div className="absolute inset-0 bg-navy-950/75" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-            <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-              {home.ctaHeadline}
-            </h2>
-            <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-              Interested in our products and want to know more? Leave us a
-              message and we will reply as soon as we can — we&apos;re on 24/7.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link
-                href={home.ctaPrimaryHref || "/about-us/contact-us"}
-                className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-all hover:-translate-y-0.5 hover:bg-brand-400"
-              >
-                {home.ctaPrimaryLabel || "Request a Free Quote"}
-              </Link>
-              <Link
-                href={home.ctaSecondaryHref || "/about-us/contact-us"}
-                className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
-              >
-                {home.ctaSecondaryLabel || "Contact Us"}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ConsultationCta
+        image={home.ctaImage}
+        headline={home.ctaHeadline}
+        body={home.ctaBody}
+        buttonLabel={home.ctaPrimaryLabel}
+        href={home.ctaPrimaryHref}
+      />
     </div>
   );
 }

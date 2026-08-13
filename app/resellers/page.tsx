@@ -13,8 +13,6 @@ import {
 } from "@/components/reseller-data";
 import { getResellersPage } from "@/lib/cms";
 
-export const revalidate = 60;
-
 export const metadata: Metadata = {
   title: "Reseller Program",
   description:
@@ -43,14 +41,14 @@ export default async function ResellersPage() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
-            Why partner with us?
+            {cms?.whyEyebrow || "Why partner with us?"}
           </p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
-            Five reasons resellers choose FMS Africa
+            {cms?.whyHeadline || "Five reasons resellers choose FMS Africa"}
           </h2>
           <p className="mt-5 text-base leading-7 text-slate-600">
-            Join forces with us to tap into the booming market of GPS tracking
-            solutions in your country. Select a benefit to learn more.
+            {cms?.whyBody ||
+              "Join forces with us to tap into the booming market of GPS tracking solutions in your country. Select a benefit to learn more."}
           </p>
         </div>
 
@@ -65,7 +63,7 @@ export default async function ResellersPage() {
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="relative min-h-80 overflow-hidden">
               <Image
-                src="/assets/landing/control-room.jpg"
+                src={cms?.programImage || "/assets/landing/control-room.jpg"}
                 alt="FMS Africa partner support and monitoring platform"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -75,10 +73,10 @@ export default async function ResellersPage() {
 
             <div>
               <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
-                How it works
+                {cms?.howEyebrow || "How it works"}
               </p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
-                Your pathway to becoming a reseller
+                {cms?.howHeadline || "Your pathway to becoming a reseller"}
               </h2>
 
               <ol className="mt-10 space-y-0">
@@ -120,26 +118,7 @@ export default async function ResellersPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-navy-950 py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-widest text-brand-500">
-              Testimonials
-            </p>
-            <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Trusted by organisations across Africa
-            </h2>
-            <p className="mt-5 text-base leading-7 text-white/70">
-              Our clients&apos; experience is the proof behind our reseller
-              promise — reliable, responsive and quality-driven.
-            </p>
-          </div>
-
-          <div className="mt-14">
-            <ResellerTestimonials items={testimonials} />
-          </div>
-        </div>
-      </section>
+      <ResellerTestimonials items={testimonials} />
 
       {/* Application form */}
       <section

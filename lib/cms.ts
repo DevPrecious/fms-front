@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  doc,
+  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -9,6 +11,7 @@ import {
   where,
   type DocumentData,
 } from "firebase/firestore";
+import { unstable_noStore as noStore } from "next/cache";
 import { db } from "./firebase";
 import type {
   AboutPageContent,
@@ -20,6 +23,9 @@ import type {
   CsrInitiative,
   CsrPageContent,
   GalleryItem,
+  GalleryPageContent,
+  BlogPageContent,
+  ClientelePageContent,
   HeroSlide,
   HomepageContent,
   PrivacyPageContent,
@@ -33,11 +39,14 @@ export type {
   AccreditationPageContent,
   BenefitsPageContent,
   BlogPost,
+  BlogPageContent,
   ClienteleItem,
+  ClientelePageContent,
   ContactPageContent,
   CsrInitiative,
   CsrPageContent,
   GalleryItem,
+  GalleryPageContent,
   HeroSlide,
   HomepageContent,
   PrivacyPageContent,
@@ -48,6 +57,7 @@ export type {
 
 async function getAll<T>(col: string): Promise<T[]> {
   try {
+    noStore();
     const snap = await getDocs(collection(db, col));
     return snap.docs.map((d) => ({ id: d.id, ...d.data() } as T));
   } catch {
@@ -60,6 +70,7 @@ async function getOrdered<T extends DocumentData>(
   field = "order",
 ): Promise<T[]> {
   try {
+    noStore();
     const q = query(collection(db, col), orderBy(field));
     const snap = await getDocs(q);
     return snap.docs.map((d) => ({ id: d.id, ...d.data() } as unknown as T));
@@ -69,8 +80,15 @@ async function getOrdered<T extends DocumentData>(
   }
 }
 
+const SINGLETON_ID = "default";
+
 async function getSingleton<T>(col: string): Promise<T | null> {
   try {
+    noStore();
+    const named = await getDoc(doc(db, col, SINGLETON_ID));
+    if (named.exists()) {
+      return { id: named.id, ...named.data() } as T;
+    }
     const snap = await getDocs(collection(db, col));
     if (snap.empty) return null;
     const d = snap.docs[0];
@@ -94,6 +112,11 @@ export const getContactPage = () =>
   getSingleton<ContactPageContent>("contactPage");
 export const getPrivacyPage = () =>
   getSingleton<PrivacyPageContent>("privacyPage");
+export const getGalleryPage = () =>
+  getSingleton<GalleryPageContent>("galleryPage");
+export const getBlogPage = () => getSingleton<BlogPageContent>("blogPage");
+export const getClientelePage = () =>
+  getSingleton<ClientelePageContent>("clientelePage");
 
 export async function getHeroSlides(): Promise<HeroSlide[]> {
   const slides = await getOrdered<HeroSlide>("heroSlides");

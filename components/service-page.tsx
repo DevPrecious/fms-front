@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ConsultationCta from "@/components/consultation-cta";
 import {
   BeforeAfterBlock,
   ComparisonBlockUI,
@@ -359,7 +360,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
 
           <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
             <div>
-              <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-navy-950 sm:text-5xl lg:text-6xl">
+              <h1 className="text-3xl font-bold leading-[1.1] tracking-tight text-navy-950 sm:text-5xl lg:text-6xl">
                 {data.title}
               </h1>
               {data.tagline && (
@@ -389,7 +390,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
           </div>
         </div>
 
-        <div className="relative mt-12 aspect-21/9 w-full overflow-hidden sm:mt-16">
+        <div className="relative mt-12 aspect-video w-full overflow-hidden sm:mt-16 sm:aspect-21/9">
           <Image
             src={data.heroImage}
             alt={data.heroImageAlt}
@@ -409,40 +410,7 @@ export default function ServicePage({ data }: { data: ServicePageData }) {
         ))}
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/assets/landing/trucks-highway.jpg"
-          alt=""
-          width={2000}
-          height={1326}
-          className="h-96 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/75" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Get started with a free consultation
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80">
-            Interested in {data.title.toLowerCase()}? Leave us a message and
-            we&apos;ll reply as soon as we can.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/about-us/contact-us"
-              className="bg-brand-500 px-8 py-3.5 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-            >
-              Request a free quote
-            </Link>
-            <Link
-              href="/about-us/contact-us"
-              className="border border-white/30 px-8 py-3.5 text-sm font-bold text-white transition-colors hover:border-white"
-            >
-              Contact us
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ConsultationCta />
     </div>
   );
 }

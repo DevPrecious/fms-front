@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import ServicePage from "@/components/service-page";
 import { getServicePage } from "@/components/services-data";
 
-export const revalidate = 60;
-
 const SLUG = "ai-powered-video-telematics";
 
 export const metadata: Metadata = {

@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import BenefitsSteps from "@/components/benefits-steps";
+import ConsultationCta from "@/components/consultation-cta";
 import {
   benefitSteps as fallbackSteps,
   industryBenefits as fallbackIndustries,
   solutionPillars as fallbackPillars,
 } from "@/components/benefits-data";
 import { getBenefitsPage } from "@/lib/cms";
-
-export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Benefits",
@@ -25,6 +24,8 @@ export default async function BenefitsPage() {
   const heroHeadline = cms?.heroHeadline || "Effortless steps to fleet intelligence.";
   const intro = cms?.intro || "We provide customer-centric solutions tailored to the specific needs of each industry — empowering data-driven decisions that increase productivity and efficiency.";
   const heroImage = cms?.heroImage || "/assets/landing/trucks-highway.jpg";
+  const stepsImage = cms?.stepsImage || "/assets/landing/hero-fleet.jpg";
+  const stepsHeadline = cms?.stepsHeadline || "Our step-by-step approach.";
   const stats = cms?.stats?.length
     ? cms.stats
     : [
@@ -81,11 +82,11 @@ export default async function BenefitsPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
-              Our step-by-step approach.
+              {stepsHeadline}
             </h2>
             <div className="relative mt-10 min-h-100 overflow-hidden">
               <Image
-                src="/assets/landing/hero-fleet.jpg"
+                src={stepsImage}
                 alt="Fleet monitoring in action"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -176,39 +177,11 @@ export default async function BenefitsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/assets/landing/logistics-port.jpg"
-          alt=""
-          width={1200}
-          height={800}
-          className="h-96 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/75" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            {ctaHeadline}
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-            {ctaBody}
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/about-us/contact-us"
-              className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-            >
-              Get started
-            </Link>
-            <Link
-              href="/about-us/contact-us"
-              className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ConsultationCta
+        image={cms?.ctaImage}
+        headline={ctaHeadline}
+        body={ctaBody}
+      />
     </div>
   );
 }

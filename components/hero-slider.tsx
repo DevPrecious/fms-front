@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import HeroTiles from "@/components/hero-tiles";
 
 export type HeroSlideData = {
   image: string;
@@ -63,7 +64,7 @@ export default function HeroSlider({
 
   return (
     <section
-      className="relative h-dvh min-h-140 w-full overflow-hidden"
+      className="relative h-dvh min-h-[28rem] w-full overflow-hidden sm:min-h-140"
       aria-label="Highlights"
     >
       {activeSlides.map((slide, index) => {
@@ -84,13 +85,13 @@ export default function HeroSlider({
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-navy-950/35" />
-            <div className="absolute inset-0 bg-linear-to-t from-navy-950/85 via-navy-950/25 to-navy-950/10" />
+            <div className="absolute inset-0 bg-black/35" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-black/10" />
 
-            <div className="absolute inset-x-0 bottom-0">
-              <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20">
+              <div className="mx-auto max-w-7xl px-4 pb-28 sm:px-6 sm:pb-20 lg:px-8">
                 <h1
-                  className={`max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight text-white transition-all delay-150 duration-700 sm:text-6xl lg:text-7xl ${
+                  className={`max-w-3xl text-3xl font-semibold leading-[1.08] tracking-tight text-white transition-all delay-150 duration-700 sm:text-5xl lg:text-7xl ${
                     isActive
                       ? "translate-y-0 opacity-100"
                       : "translate-y-6 opacity-0"
@@ -118,7 +119,7 @@ export default function HeroSlider({
                 >
                   <Link
                     href="/about-us/contact-us"
-                    className="inline-block bg-white px-7 py-3.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-brand-500"
+                    className="pointer-events-auto inline-block bg-white px-7 py-3.5 text-sm font-semibold text-navy-900 transition-colors hover:bg-brand-500"
                   >
                     Get started
                   </Link>
@@ -129,7 +130,9 @@ export default function HeroSlider({
         );
       })}
 
-      <div className="absolute bottom-8 right-4 flex gap-2 sm:right-6 lg:right-8">
+      <HeroTiles />
+
+      <div className="absolute bottom-8 right-4 z-20 flex gap-2 sm:right-6 lg:right-8">
         {activeSlides.map((slide, index) => (
           <button
             key={`${slide.image}-dot-${index}`}

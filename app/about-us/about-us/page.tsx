@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getAboutPage } from "@/lib/cms";
-
-export const revalidate = 60;
+import ConsultationCta from "@/components/consultation-cta";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -132,8 +131,21 @@ export default async function AboutUsPage() {
   const faqs = cms?.faqs?.length ? cms.faqs : fallback_faqs;
   const featuredQuote = cms?.featuredQuote || "We empower businesses with real-time operational data, enabling smarter decision making that drives productivity, cost savings and operational excellence.";
   const featuredQuoteAuthor = cms?.featuredQuoteAuthor || "FMS Africa Purpose Statement";
+  const featuredEyebrow = cms?.featuredEyebrow || "What we stand for";
+  const featuredHeadline = cms?.featuredHeadline || "Real-time data. Smarter decisions. Better outcomes.";
+  const pillarsImage = cms?.pillarsImage || "/assets/landing/control-room.jpg";
+  const pillarsEyebrow = cms?.pillarsEyebrow || "Who we are";
+  const pillarsHeadline = cms?.pillarsHeadline || "Our vision, mission and purpose";
+  const pillarsCtaLabel = cms?.pillarsCtaLabel || "Learn more";
+  const pillarsCtaHref = cms?.pillarsCtaHref || "/about-us/contact-us";
+  const valuesEyebrow = cms?.valuesEyebrow || "What guides us";
+  const valuesHeadline = cms?.valuesHeadline || "Core values";
+  const trustedEyebrow = cms?.trustedEyebrow || "Trusted by";
+  const faqEyebrow = cms?.faqEyebrow || "FAQ";
+  const faqHeadline = cms?.faqHeadline || "Your questions, answered";
   const ctaHeadline = cms?.ctaHeadline || "Join the connected fleet movement with FMS Africa";
   const ctaBody = cms?.ctaBody || "We're on 24/7 to react promptly to your service needs. If you are interested in partnering with us, leave a message and we will reply as soon as we can.";
+  const ctaImage = cms?.ctaImage;
 
   return (
     <div className="bg-white">
@@ -191,10 +203,10 @@ export default async function AboutUsPage() {
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
-              Who we are
+              {pillarsEyebrow}
             </p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
-              Our vision, mission and purpose
+              {pillarsHeadline}
             </h2>
 
             <div className="mt-10 space-y-10">
@@ -212,17 +224,17 @@ export default async function AboutUsPage() {
             </div>
 
             <Link
-              href="/about-us/contact-us"
+              href={pillarsCtaHref}
               className="mt-10 inline-flex items-center gap-2 bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
             >
-              Learn more
+              {pillarsCtaLabel}
               <ArrowIcon />
             </Link>
           </div>
 
-          <div className="relative min-h-120 overflow-hidden lg:min-h-160">
+          <div className="relative min-h-80 overflow-hidden lg:min-h-160">
             <Image
-              src="/assets/landing/control-room.jpg"
+              src={pillarsImage}
               alt="FMS Africa analytics and monitoring platform"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -237,10 +249,10 @@ export default async function AboutUsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
-              What guides us
+              {valuesEyebrow}
             </p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
-              Core values
+              {valuesHeadline}
             </h2>
           </div>
 
@@ -267,7 +279,7 @@ export default async function AboutUsPage() {
       <section className="border-y border-slate-200 py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-navy-600">
-            Trusted by
+            {trustedEyebrow}
           </p>
           <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
             {trustedBy.map((name) => (
@@ -287,10 +299,10 @@ export default async function AboutUsPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-brand-500">
-              What we stand for
+              {featuredEyebrow}
             </p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Real-time data. Smarter decisions. Better outcomes.
+              {featuredHeadline}
             </h2>
           </div>
           <blockquote className="border-l-4 border-brand-500 pl-6">
@@ -308,10 +320,10 @@ export default async function AboutUsPage() {
       <section className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
-            FAQ
+            {faqEyebrow}
           </p>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
-            Your questions, answered
+            {faqHeadline}
           </h2>
         </div>
 
@@ -345,38 +357,14 @@ export default async function AboutUsPage() {
       </section>
 
       {/* Partner CTA */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/assets/landing/logistics-port.jpg"
-          alt=""
-          width={1200}
-          height={800}
-          className="h-96 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/75" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            {ctaHeadline}
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-            {ctaBody}
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/resellers"
-              className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-            >
-              Partner with us
-            </Link>
-            <Link
-              href="/about-us/contact-us"
-              className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
-            >
-              Request a Free Quote
-            </Link>
-          </div>
-        </div>
-      </section>
+
+      <ConsultationCta
+        image={ctaImage}
+        headline={ctaHeadline}
+        body={ctaBody}
+        buttonLabel="Get a free consultation"
+        href="/about-us/contact-us"
+      />
     </div>
   );
 }

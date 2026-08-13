@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AccreditationCertificate from "@/components/accreditation-certificate";
 import { getAccreditationPage } from "@/lib/cms";
-
-export const revalidate = 60;
+import ConsultationCta from "@/components/consultation-cta";
 
 export const metadata: Metadata = {
   title: "Accreditations",
@@ -64,9 +63,13 @@ function parseHighlights(items: string[]) {
 
 export default async function AccreditationsPage() {
   const cms = await getAccreditationPage().catch(() => null);
-  const heroHeadline = cms?.heroHeadline || "Certified compliance,\nproven quality.";
+  const heroHeadline =
+    cms?.heroHeadline || "Certified compliance,\nproven quality.";
   const [heroLine1, heroLine2] = heroHeadline.split("\n");
-  const intro = cms?.intro || "Fleet Monitoring Systems Ltd is now ISO 45001:2018 Certified — the internationally recognised standard for occupational health and safety management systems.";
+  const intro =
+    cms?.intro ||
+    "Fleet Monitoring Systems Ltd is now ISO 45001:2018 Certified — the internationally recognised standard for occupational health and safety management systems.";
+  const heroImage = cms?.heroImage || "/assets/landing/control-room.jpg";
   const certificateTitle = cms?.certificateTitle || "ISO 45001:2018 Certified";
   const highlights = cms?.highlights?.length
     ? parseHighlights(cms.highlights)
@@ -87,7 +90,9 @@ export default async function AccreditationsPage() {
         { value: "100+", label: "Enterprise clients worldwide" },
       ];
   const ctaHeadline = cms?.ctaHeadline || "Need to verify our accreditation?";
-  const ctaBody = cms?.ctaBody || "Contact our team for certificate verification or to learn how our ISO 45001:2018 certification supports your compliance requirements.";
+  const ctaBody =
+    cms?.ctaBody ||
+    "Contact our team for certificate verification or to learn how our ISO 45001:2018 certification supports your compliance requirements.";
 
   return (
     <div className="bg-white">
@@ -100,13 +105,18 @@ export default async function AccreditationsPage() {
           </p>
           <h1 className="mt-8 text-4xl font-bold leading-[1.12] tracking-tight text-navy-950 sm:text-5xl lg:text-7xl">
             {heroLine1}
-            {heroLine2 ? (<><br />{heroLine2}</>) : null}
+            {heroLine2 ? (
+              <>
+                <br />
+                {heroLine2}
+              </>
+            ) : null}
           </h1>
         </div>
 
         <div className="relative aspect-video w-full overflow-hidden">
           <Image
-            src="/assets/landing/control-room.jpg"
+            src={heroImage}
             alt="FMS Africa operations and compliance monitoring"
             fill
             priority
@@ -127,13 +137,11 @@ export default async function AccreditationsPage() {
               <h2 className="mt-6 text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
                 {certificateTitle}
               </h2>
-              <p className="mt-5 text-lg leading-8 text-slate-600">
-                {intro}
-              </p>
+              <p className="mt-5 text-lg leading-8 text-slate-600">{intro}</p>
               <ul className="mt-8 space-y-4 border-l-4 border-brand-500 pl-6">
                 <li className="text-sm leading-7 text-slate-600">
-                  <span className="font-bold text-navy-900">Standard:</span>{" "}
-                  ISO 45001:2018
+                  <span className="font-bold text-navy-900">Standard:</span> ISO
+                  45001:2018
                 </li>
                 <li className="text-sm leading-7 text-slate-600">
                   <span className="font-bold text-navy-900">Organisation:</span>{" "}
@@ -218,8 +226,8 @@ export default async function AccreditationsPage() {
       </section>
 
       {/* Stats bar */}
-      <section className="border-y border-navy-900/10">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4">
+      <section className="border-y">
+        <div className="mx-auto grid  grid-cols-2 lg:grid-cols-4">
           {stats.map(({ value, label }) => (
             <div
               key={label}
@@ -234,39 +242,11 @@ export default async function AccreditationsPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/assets/landing/hero-fleet.jpg"
-          alt=""
-          width={2000}
-          height={1326}
-          className="h-96 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/75" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            {ctaHeadline}
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80 sm:text-base">
-            {ctaBody}
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/about-us/contact-us"
-              className="bg-brand-500 px-6 py-3 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-            >
-              Contact Us
-            </Link>
-            <Link
-              href="/about-us/contact-us"
-              className="border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition-colors hover:bg-white/20"
-            >
-              Request a Free Quote
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ConsultationCta
+        image={cms?.ctaImage}
+        headline={ctaHeadline}
+        body={ctaBody}
+      />
     </div>
   );
 }

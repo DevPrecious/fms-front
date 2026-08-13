@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import GalleryView from "@/components/gallery-view";
 import { galleryItems as fallbackGallery } from "@/components/gallery-data";
-import { getGalleryItems } from "@/lib/cms";
+import { getGalleryItems, getGalleryPage } from "@/lib/cms";
 import type { GalleryItem } from "@/components/gallery-data";
-
-export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -15,6 +13,7 @@ export const metadata: Metadata = {
 
 export default async function GalleryPage() {
   const cmsItems = await getGalleryItems().catch(() => []);
+  const galleryPage = await getGalleryPage().catch(() => null);
   const items: GalleryItem[] =
     cmsItems.length > 0
       ? cmsItems.map((item, index) => ({
@@ -35,20 +34,27 @@ export default async function GalleryPage() {
             <span aria-hidden="true">•</span>
           </p>
           <h1 className="mt-8 text-4xl font-bold leading-[1.12] tracking-tight text-navy-950 sm:text-5xl lg:text-7xl">
-            Our work in
-            <br />
-            action.
+            {galleryPage?.heroHeadline || (
+              <>
+                Our work in
+                <br />
+                action.
+              </>
+            )}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-            Field installations, technical operations and partnership events
-            from across FMS Africa&apos;s global footprint — {items.length}{" "}
-            moments captured on site.
+            {galleryPage?.intro ||
+              `Field installations, technical operations and partnership events from across FMS Africa's global footprint — ${items.length} moments captured on site.`}
           </p>
         </div>
 
         <div className="relative aspect-video w-full overflow-hidden">
           <Image
-            src="/assets/gallery/Technical-Works-1.jpg"
+            src={
+              galleryPage?.heroImage ||
+              items[0]?.src ||
+              "/assets/gallery/Technical-Works-1.jpg"
+            }
             alt="FMS Africa technical works in the field"
             fill
             priority

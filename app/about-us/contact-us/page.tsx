@@ -9,8 +9,6 @@ import {
 import { regionalPhones as fallbackPhones } from "@/components/site-data";
 import { getContactPage, getSiteSettings } from "@/lib/cms";
 
-export const revalidate = 60;
-
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
@@ -119,14 +117,14 @@ export default async function ContactUsPage() {
     <div className="bg-white">
       {/* Hero title */}
       <section className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
-        <h1 className="text-5xl font-bold tracking-tight text-navy-950 sm:text-6xl lg:text-7xl">
+        <h1 className="text-3xl font-bold tracking-tight text-navy-950 sm:text-6xl lg:text-7xl">
           {heroHeadline}.
         </h1>
       </section>
 
       {/* Inquiry cards */}
       <section className="border-y border-slate-200 bg-slate-50">
-        <div className="mx-auto grid max-w-7xl divide-y divide-slate-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <div className="mx-auto grid max-w-7xl divide-y divide-slate-200 md:grid-cols-3 md:divide-x md:divide-y-0">
           {inquiryCards.map(({ id, title, description, email, href, icon }) => (
             <article key={id} className="flex flex-col p-8 sm:p-10">
               <span className="flex h-10 w-10 items-center justify-center bg-brand-500">

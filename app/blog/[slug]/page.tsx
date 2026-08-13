@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ConsultationCta from "@/components/consultation-cta";
 import {
   blogPosts,
   getPostContent,
   getRelatedPosts,
 } from "@/components/blog-data";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/cms";
-
-export const revalidate = 60;
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -212,32 +211,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/assets/landing/trucks-highway.jpg"
-          alt=""
-          width={1200}
-          height={800}
-          className="h-80 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/75" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Join the connected fleet movement with FMS Africa
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80">
-            Get a free consultation and discover how our telematics solutions
-            can transform your fleet operations.
-          </p>
-          <Link
-            href="/about-us/contact-us"
-            className="mt-8 bg-brand-500 px-8 py-3.5 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-          >
-            Contact us
-          </Link>
-        </div>
-      </section>
+      <ConsultationCta />
     </article>
   );
 }

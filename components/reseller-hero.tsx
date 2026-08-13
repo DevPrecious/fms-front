@@ -40,7 +40,7 @@ export default function ResellerHero({
           {badge}
         </p>
 
-        <h1 className="mt-8 max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+        <h1 className="mt-8 max-w-4xl text-3xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
           {heroHeadline}{" "}
           <span className="text-brand-500">{country}</span>
         </h1>
@@ -61,7 +61,7 @@ export default function ResellerHero({
               id="hero-country"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
-              className="mt-2 min-w-48 border border-white/20 bg-navy-900 px-4 py-3 text-sm font-bold text-white focus:border-brand-500 focus:outline-none"
+            className="mt-2 w-full max-w-full border border-white/20 bg-navy-900 px-4 py-3 text-sm font-bold text-white focus:border-brand-500 focus:outline-none sm:min-w-48 sm:w-auto"
             >
               <option value="your Country">Select a country</option>
               {regionOptions.map((region) => (
@@ -80,7 +80,7 @@ export default function ResellerHero({
         </div>
 
         {/* Program steps preview */}
-        <div className="mt-16 grid gap-px bg-white/10 sm:grid-cols-4">
+        <div className="mt-16 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {stepItems.map(({ step, title, body }) => (
             <div
               key={step}

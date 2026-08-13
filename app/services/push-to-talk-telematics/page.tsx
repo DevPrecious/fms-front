@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import ServicePage from "@/components/service-page";
 import { getServicePage } from "@/components/services-data";
 
-export const revalidate = 60;
-
 const SLUG = "push-to-talk-telematics";
 
 export const metadata: Metadata = {

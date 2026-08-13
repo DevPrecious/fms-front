@@ -29,6 +29,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 @keyframes marquee {
@@ -50,14 +51,94 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee 80s linear infinite;
+  animation: marquee 55s linear infinite;
 }
 
 .animate-marquee-reverse {
-  animation: marquee-reverse 80s linear infinite;
+  animation: marquee-reverse 65s linear infinite;
 }
 
 .animate-marquee:hover,
 .animate-marquee-reverse:hover {
   animation-play-state: paused;
+}
+
+/* Footer — slow drifting gradient orbs */
+.footer-accent-bar {
+  background: linear-gradient(
+    90deg,
+    #ffd200,
+    #ffe680,
+    #ffd200,
+    #e6bd00,
+    #ffd200
+  );
+  background-size: 300% 100%;
+  animation: footer-accent-drift 14s ease-in-out infinite;
+}
+
+.footer-orb {
+  will-change: transform, opacity;
+}
+
+.footer-orb-a {
+  animation: footer-orb-drift-a 22s ease-in-out infinite;
+}
+
+.footer-orb-b {
+  animation: footer-orb-drift-b 28s ease-in-out infinite;
+}
+
+.footer-orb-c {
+  animation: footer-orb-drift-c 32s ease-in-out infinite;
+}
+
+@keyframes footer-accent-drift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes footer-orb-drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(12%, 18%) scale(1.12);
+    opacity: 0.85;
+  }
+}
+
+@keyframes footer-orb-drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(-16%, -12%) scale(1.18);
+    opacity: 0.75;
+  }
+}
+
+@keyframes footer-orb-drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.35;
+  }
+  33% {
+    transform: translate(10%, -20%);
+    opacity: 0.55;
+  }
+  66% {
+    transform: translate(-14%, 10%);
+    opacity: 0.45;
+  }
 }

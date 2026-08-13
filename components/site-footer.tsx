@@ -121,15 +121,16 @@ export default function SiteFooter({
   ];
 
   return (
-    <footer className="relative bg-navy-950 text-white">
-      <div className="h-1 w-full bg-linear-to-r from-brand-500 via-brand-400 to-brand-600" />
+    <footer className="relative overflow-hidden bg-navy-950 text-white">
+      <div className="footer-accent-bar h-1 w-full" />
 
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden"
         aria-hidden="true"
       >
-        <div className="absolute -top-32 left-1/4 h-72 w-72 bg-navy-600/30 blur-3xl" />
-        <div className="absolute -bottom-32 right-1/4 h-72 w-72 bg-brand-500/10 blur-3xl" />
+        <div className="footer-orb footer-orb-a absolute -top-32 left-1/4 h-72 w-72 rounded-full bg-navy-600/25 blur-3xl" />
+        <div className="footer-orb footer-orb-b absolute -bottom-32 right-1/4 h-72 w-72 rounded-full bg-brand-500/12 blur-3xl" />
+        <div className="footer-orb footer-orb-c absolute top-1/3 right-1/3 h-56 w-56 rounded-full bg-brand-500/8 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

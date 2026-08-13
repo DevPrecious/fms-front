@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { blogPosts as fallbackPosts, getFeaturedPost } from "@/components/blog-data";
-import { getBlogPosts } from "@/lib/cms";
-
-export const revalidate = 60;
+import { getBlogPosts, getBlogPage } from "@/lib/cms";
+import ConsultationCta from "@/components/consultation-cta";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,7 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const cmsPosts = await getBlogPosts().catch(() => []);
+  const [cmsPosts, listing] = await Promise.all([
+    getBlogPosts().catch(() => []),
+    getBlogPage().catch(() => null),
+  ]);
   const blogPosts = cmsPosts.length > 0
     ? cmsPosts.map((p) => ({
         slug: p.slug,
@@ -43,7 +45,7 @@ export default async function BlogPage() {
 
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1fr_320px] lg:gap-12">
           <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-navy-950 sm:text-5xl lg:text-6xl">
-            Insights for smarter fleet operations.
+            {listing?.heroHeadline || "Insights for smarter fleet operations."}
           </h1>
 
           <aside className="bg-navy-950 p-6 sm:p-8">
@@ -58,9 +60,8 @@ export default async function BlogPage() {
               </svg>
             </span>
             <p className="mt-5 text-sm leading-7 text-white/80">
-              Explore tips, trends and innovations in GPS tracking, telematics
-              and IoT to inspire your journey toward safer, more efficient fleet
-              management.
+              {listing?.intro ||
+                "Explore tips, trends and innovations in GPS tracking, telematics and IoT to inspire your journey toward safer, more efficient fleet management."}
             </p>
           </aside>
         </div>
@@ -133,32 +134,7 @@ export default async function BlogPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden">
-        <Image
-          src="/assets/landing/hero-fleet.jpg"
-          alt=""
-          width={2000}
-          height={1326}
-          className="h-96 w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-navy-950/75" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <h2 className="max-w-2xl text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Join the connected fleet movement with FMS Africa
-          </h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-white/80">
-            Discover telematics solutions that reduce costs and improve safety.
-            Take the first step today.
-          </p>
-          <Link
-            href="/about-us/contact-us"
-            className="mt-8 bg-brand-500 px-8 py-3.5 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
-          >
-            Get started today
-          </Link>
-        </div>
-      </section>
+      <ConsultationCta />
     </div>
   );
 }
