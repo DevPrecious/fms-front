@@ -89,6 +89,33 @@ const fallback_trustedBy = [
   "Ministry of Water & Environment",
 ];
 
+const fallback_teamMembers = [
+  {
+    initials: "MD",
+    role: "Managing Director",
+    dept: "Leadership & Strategy",
+    photo: "",
+  },
+  {
+    initials: "TO",
+    role: "Head of Technical Operations",
+    dept: "Engineering & Field Ops",
+    photo: "",
+  },
+  {
+    initials: "FS",
+    role: "Fleet Solutions Engineer",
+    dept: "Deployments & Integrations",
+    photo: "",
+  },
+  {
+    initials: "CS",
+    role: "Customer Success Manager",
+    dept: "Onboarding & SLA Reviews",
+    photo: "",
+  },
+];
+
 const fallback_faqs = [
   {
     question: "What does FMS Africa Nigeria do?",
@@ -143,6 +170,20 @@ export default async function AboutUsPage() {
   const trustedEyebrow = cms?.trustedEyebrow || "Trusted by";
   const faqEyebrow = cms?.faqEyebrow || "FAQ";
   const faqHeadline = cms?.faqHeadline || "Your questions, answered";
+  const teamMembers = cms?.teamMembers?.length
+    ? cms.teamMembers
+    : fallback_teamMembers;
+  const teamEyebrow = cms?.teamEyebrow || "Meet our team";
+  const teamHeadline =
+    cms?.teamHeadline || "The people behind\nthe platform";
+  const [teamLine1, teamLine2] = teamHeadline.split("\n");
+  const teamIntro =
+    cms?.teamIntro ||
+    "A Lagos-based team of engineers and fleet specialists, backed by the FMS Africa group's two decades of telematics experience — focused on your fleet from day one.";
+  const teamCtaText =
+    cms?.teamCtaText ||
+    "We're growing our Lagos team — want to work with us or meet us in person?";
+  const teamCtaLabel = cms?.teamCtaLabel || "Get in touch";
   const ctaHeadline = cms?.ctaHeadline || "Join the connected fleet movement with FMS Africa";
   const ctaBody = cms?.ctaBody || "We're on 24/7 to react promptly to your service needs. If you are interested in partnering with us, leave a message and we will reply as soon as we can.";
   const ctaImage = cms?.ctaImage;
@@ -272,6 +313,75 @@ export default async function AboutUsPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Meet our team */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <span className="inline-block rounded-full border border-slate-300 px-5 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-navy-900">
+          {teamEyebrow}
+        </span>
+
+        <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1fr_400px] lg:gap-16">
+          <h2 className="text-3xl font-semibold leading-tight tracking-tight text-navy-950 sm:text-4xl">
+            {teamLine1}
+            {teamLine2 ? (
+              <>
+                <br className="hidden sm:block" /> {teamLine2}
+              </>
+            ) : null}
+          </h2>
+          <p className="pt-1 text-sm leading-7 text-slate-500">{teamIntro}</p>
+        </div>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {teamMembers.map(({ initials, role, dept, photo }) => (
+            <article
+              key={role}
+              className="group relative aspect-4/5 overflow-hidden rounded-2xl bg-linear-to-b from-slate-200 via-slate-300 to-slate-400"
+            >
+              {photo ? (
+                <Image
+                  src={photo}
+                  alt={role}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : (
+                <>
+                  {/* Portrait placeholder — swap for a real photo */}
+                  <svg
+                    className="absolute inset-x-0 -bottom-6 mx-auto h-[72%] w-auto text-slate-500/60 transition-transform duration-500 group-hover:scale-105"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 12.5a4.75 4.75 0 100-9.5 4.75 4.75 0 000 9.5zm0 2.5c-5.2 0-9.5 2.9-9.5 6.5V24h19v-2.5c0-3.6-4.3-6.5-9.5-6.5z" />
+                  </svg>
+                  <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-navy-950 text-xs font-bold tracking-wider text-brand-500">
+                    {initials}
+                  </span>
+                </>
+              )}
+
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-navy-950 via-navy-950/85 to-transparent px-4 pb-5 pt-12 text-center">
+                <p className="text-base font-semibold text-white">{role}</p>
+                <p className="mt-1 text-xs text-white/60">{dept}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border border-slate-200 bg-slate-50 px-6 py-5">
+          <p className="text-sm font-medium text-navy-900">{teamCtaText}</p>
+          <Link
+            href="/about-us/contact-us"
+            className="inline-flex items-center gap-2 bg-brand-500 px-5 py-2.5 text-sm font-bold text-navy-900 transition-colors hover:bg-brand-400"
+          >
+            {teamCtaLabel}
+            <ArrowIcon />
+          </Link>
         </div>
       </section>
 

@@ -4,7 +4,7 @@ import HeroSlider from "@/components/hero-slider";
 import ConsultationCta from "@/components/consultation-cta";
 import TestimonialsMarquee from "@/components/testimonials-marquee";
 import { getHeroSlides, getHomepage } from "@/lib/cms";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { HomepageContent, HeroSlide } from "@/lib/cms-types";
 
 function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
@@ -102,6 +102,39 @@ const fallbackPillars = [
   },
 ];
 
+/* Pyramid levels top-first (highest value at the top). Styling is derived
+   from position so the CMS only stores content. */
+const fallbackPyramidLevels = [
+  {
+    title: "Business Intelligence",
+    body: "Strategic decisions & predictive analytics",
+  },
+  {
+    title: "Cost Optimization",
+    body: "Fuel, maintenance, utilization & energy",
+  },
+  {
+    title: "Operational Control",
+    body: "Fleet, drivers, assets & generators",
+  },
+  {
+    title: "Risk & Security",
+    body: "Theft, accidents, unauthorized movement",
+  },
+  {
+    title: "Visibility",
+    body: "Real-time location & status",
+  },
+];
+
+const pyramidThemes = [
+  { theme: "bg-brand-500 text-navy-950", subtle: "text-navy-950/60" },
+  { theme: "bg-navy-700 text-white", subtle: "text-white/60" },
+  { theme: "bg-navy-800 text-white", subtle: "text-white/60" },
+  { theme: "bg-navy-900 text-white", subtle: "text-white/60" },
+  { theme: "bg-navy-950 text-white", subtle: "text-white/60" },
+];
+
 const fallbackStories = [
   {
     company: "United Bank for Africa",
@@ -196,6 +229,13 @@ const fallbackHomepage: Omit<HomepageContent, "id" | "solutions"> & {
   approachCtaHref: "/about-us/contact-us",
   storiesEyebrow: "Testimonials",
   storiesHeadline: "What customers say.",
+  pyramidEyebrow: "How value compounds",
+  pyramidHeadline: "The FMS Nigeria Customer Value Pyramid",
+  pyramidIntro:
+    "Every layer builds on the one beneath it — start with visibility, climb to intelligence.",
+  pyramidFootnote:
+    "Value flows upward — from raw location data to boardroom decisions",
+  pyramidLevels: fallbackPyramidLevels,
 };
 
 export default async function Home() {
@@ -221,6 +261,18 @@ export default async function Home() {
   const benefits = home.benefits?.length ? home.benefits : fallbackBenefits;
   const pillars = home.pillars?.length ? home.pillars : fallbackPillars;
   const stories = home.stories?.length ? home.stories : fallbackStories;
+  const pyramidLevels = home.pyramidLevels?.length
+    ? home.pyramidLevels
+    : fallbackPyramidLevels;
+  const pyramidEyebrow = home.pyramidEyebrow || "How value compounds";
+  const pyramidHeadline =
+    home.pyramidHeadline || "The FMS Nigeria Customer Value Pyramid";
+  const pyramidIntro =
+    home.pyramidIntro ||
+    "Every layer builds on the one beneath it — start with visibility, climb to intelligence.";
+  const pyramidFootnote =
+    home.pyramidFootnote ||
+    "Value flows upward — from raw location data to boardroom decisions";
 
   return (
     <div className="bg-white">
@@ -436,6 +488,70 @@ export default async function Home() {
           >
             {home.benefitsBandCtaLabel || "Partner with us"}
           </Link>
+        </div>
+      </section>
+
+      {/* ── FMS Nigeria Customer Value Pyramid ──────────────── */}
+      <section className="border-y border-slate-200 bg-slate-50 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-navy-600">
+              <span className="mr-2 inline-block h-2 w-2 bg-brand-500" />
+              {pyramidEyebrow}
+            </p>
+            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
+              {pyramidHeadline}
+            </h2>
+            <p className="mt-5 text-base leading-7 text-slate-600">
+              {pyramidIntro}
+            </p>
+          </div>
+
+          <div className="mx-auto mt-14 flex max-w-4xl flex-col items-center gap-1.5">
+            {pyramidLevels.map(({ title, body }, index) => {
+              const count = pyramidLevels.length;
+              const level = count - index;
+              const widthPct =
+                count > 1 ? 46 + ((100 - 46) * index) / (count - 1) : 100;
+              const themeIndex = Math.round(
+                (index * (pyramidThemes.length - 1)) / Math.max(count - 1, 1),
+              );
+              const { theme, subtle } = pyramidThemes[themeIndex];
+              return (
+                <div
+                  key={title}
+                  style={{ "--pyramid-w": `${widthPct}%` } as CSSProperties}
+                  className={`group w-full px-6 py-5 text-center transition-transform duration-300 hover:-translate-y-0.5 sm:w-(--pyramid-w) sm:px-10 sm:[clip-path:polygon(3.5%_0,96.5%_0,100%_100%,0_100%)] ${theme}`}
+                >
+                  <p
+                    className={`text-[10px] font-bold uppercase tracking-[0.25em] ${subtle}`}
+                  >
+                    Level {level}
+                  </p>
+                  <h3 className="mt-1 text-base font-bold uppercase tracking-wide sm:text-lg">
+                    {title}
+                  </h3>
+                  <p className={`mt-1 text-xs sm:text-sm ${subtle}`}>{body}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-widest text-slate-400">
+            <svg
+              className="h-4 w-4 text-brand-600"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 19V5M6 11l6-6 6 6" />
+            </svg>
+            {pyramidFootnote}
+          </div>
         </div>
       </section>
 
