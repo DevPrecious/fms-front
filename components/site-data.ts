@@ -116,7 +116,7 @@ export const footerPortalLinks: NavLink[] = [
 export const footerContact = {
   phone: "+234 803 298 0119",
   whatsapp:
-    "https://api.whatsapp.com/send?phone=+2348032980119&text=Hello%20FMS%20Africa%20Nigeria",
+    "https://api.whatsapp.com/send?phone=+2348109293016&text=Hello%20FMS%20Africa%20Nigeria",
   contactPage: "/about-us/contact-us",
 };
 

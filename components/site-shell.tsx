@@ -39,7 +39,8 @@ function settingsOrFallback(
       settings?.footerBlurb ||
       "FMS Africa Nigeria Ltd is now on the ground in Lagos — bringing the FMS Africa group's real-time fleet, fuel and asset monitoring to Nigerian operators.",
     footerPhone: settings?.footerPhone || footerContact.phone,
-    footerWhatsapp: settings?.footerWhatsapp || footerContact.whatsapp,
+    // WhatsApp link is set in code (site-data.ts); the CMS value is ignored.
+    footerWhatsapp: footerContact.whatsapp,
     contactPageUrl: settings?.contactPageUrl || footerContact.contactPage,
     designCreditLabel:
       settings?.designCreditLabel || footerDesignCredit.label,
